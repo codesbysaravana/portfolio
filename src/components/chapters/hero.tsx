@@ -90,20 +90,23 @@ export function ChapterHero() {
         </div>
 
         {/* Foreground Content Layer */}
-        <div ref={contentRef} className="relative z-10 flex flex-col items-center text-center">
+        <div ref={contentRef} className="relative z-10 flex flex-col items-center text-center mt-32">
           {/* Name — Display typography */}
-          <Headline as="h1" size="display" className="mb-6">
-            Saravana Priyan C
-          </Headline>
+          <div style={{ fontFamily: 'var(--font-newsreader), serif' }}>
+            <Headline as="h1" size="display" className="mb-6 !font-normal">
+              Saravana Priyan C
+            </Headline>
+          </div>
 
           {/* Role — Secondary text */}
           <AnimateOnScroll preset="fadeUp" delay={0.6}>
             <p
-              className="text-[var(--portfolio-fg-secondary)]"
+              className="text-[var(--portfolio-fg-secondary)] uppercase tracking-widest"
               style={{
-                fontSize: 'var(--font-size-body-lg)',
+                fontFamily: 'var(--font-inter), sans-serif',
+                fontSize: '0.85rem',
                 lineHeight: 'var(--line-height-body-lg)',
-                letterSpacing: 'var(--letter-spacing-body-lg)',
+                letterSpacing: '0.1em',
               }}
             >
               Backend Platform Engineer
