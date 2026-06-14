@@ -36,7 +36,7 @@ export function ChapterContact() {
           {/* Email CTA */}
           <AnimateOnScroll preset="fadeUp" delay={0.3}>
             <a
-              href="mailto:your@email.com"
+              href="mailto:c.saravanapriyan@gmail.com"
               className="group relative inline-block text-[var(--portfolio-fg-primary)] transition-colors hover:text-[var(--portfolio-accent)]"
               style={{
                 fontSize: 'var(--font-size-title)',
@@ -44,7 +44,7 @@ export function ChapterContact() {
                 letterSpacing: 'var(--letter-spacing-title)',
               }}
             >
-              your@email.com
+              c.saravanapriyan@gmail.com
               <span className="absolute left-0 -bottom-1 h-px w-full origin-left scale-x-100 bg-[var(--portfolio-border)] transition-all duration-300 group-hover:bg-[var(--portfolio-accent)] group-hover:scale-x-100" />
             </a>
           </AnimateOnScroll>
@@ -56,22 +56,22 @@ export function ChapterContact() {
             className="mt-12 flex flex-wrap items-center justify-center gap-6 md:gap-8"
           >
             <SocialLink
-              href="https://github.com/yourusername"
+              href="https://github.com/codesbysaravana"
               label="GitHub"
               icon={<ExternalLink size={16} />}
             />
             <SocialLink
-              href="https://linkedin.com/in/yourusername"
+              href="https://www.linkedin.com/in/saravanapriyanc/"
               label="LinkedIn"
               icon={<ExternalLink size={16} />}
             />
             <SocialLink
-              href="https://twitter.com/yourusername"
+              href="https://twitter.com/codesbysaravana"
               label="Twitter"
               icon={<ExternalLink size={16} />}
             />
             <SocialLink
-              href="mailto:your@email.com"
+              href="mailto:c.saravanapriyan@gmail.com"
               label="Email"
               icon={<Mail size={16} />}
             />
@@ -87,7 +87,7 @@ export function ChapterContact() {
               letterSpacing: 'var(--letter-spacing-caption)',
             }}
           >
-            © {new Date().getFullYear()} Your Name
+            © {new Date().getFullYear()} saravanapriyanc
           </p>
         </AnimateOnScroll>
       </footer>
