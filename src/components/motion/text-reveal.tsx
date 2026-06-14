@@ -26,7 +26,7 @@ export function TextReveal({
   });
 
   return (
-    <Tag ref={ref} className={cn(className)} style={style}>
+    <Tag ref={ref as any} className={cn(className)} style={style}>
       {children}
     </Tag>
   );

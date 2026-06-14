@@ -77,7 +77,7 @@ export function ChapterHero() {
         {/* Cinematic Backdrop Image Layer */}
         <div ref={imageWrapperRef} className="absolute inset-0 z-0">
           <Image
-            src="/hero_portrait.jpeg"
+            src="/saravana2.png"
             alt="Hero Portrait"
             fill
             priority
