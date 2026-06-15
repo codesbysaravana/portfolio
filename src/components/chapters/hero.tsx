@@ -145,14 +145,16 @@ export function ChapterHero() {
             top: 48,
             left: 48,
             zIndex: 10,
-            fontFamily: 'var(--font-newsreader), serif',
-            fontStyle: 'italic',
-            fontSize: '0.875rem',
-            letterSpacing: '0.08em',
-            color: '#888',
+            fontFamily: 'Inter, sans-serif',
+            fontWeight: 300,
+            fontSize: '1.15rem',
+            letterSpacing: '0.45em',
+            textTransform: 'uppercase',
+            color: '#f5f5f5',
+            lineHeight: 1,
           }}
         >
-          Backend Engineer
+          Elite Engineer & Founder
         </div>
 
         {/* ━━ Nav — top right ━━ */}
@@ -183,7 +185,6 @@ export function ChapterHero() {
             </a>
           ))}
         </nav>
-
         {/* ━━ Layer 1: "Saravana" — BEHIND portrait (z-1) ━━ */}
         <div
           ref={firstNameRef}
@@ -195,7 +196,7 @@ export function ChapterHero() {
             flexDirection: 'column',
             justifyContent: 'flex-end',
             alignItems: 'center',
-            paddingBottom: '52vh', // Pushes text above center
+            paddingBottom: '45.5vh', // Pushes text above center
           }}
         >
           <h1

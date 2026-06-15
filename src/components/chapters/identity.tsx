@@ -5,7 +5,7 @@ import { Container } from '@/components/layout/container';
 import { ChapterOverline } from '@/components/content/chapter-overline';
 import { Headline } from '@/components/content/headline';
 import { EditorialText } from '@/components/content/editorial-text';
-import { MaskReveal } from '@/components/motion/mask-reveal';
+import { AnimateOnScroll } from '@/components/motion/animate-on-scroll';
 import { ParallaxLayer } from '@/components/motion/parallax-layer';
 import Image from 'next/image';
 
@@ -39,12 +39,13 @@ export function ChapterIdentity() {
           </div>
 
           {/* Right — Image (optional) */}
-          <ParallaxLayer speed={-0.15}>
-            <MaskReveal direction="up" delay={0.3}>
+          <div className="lg:mt-12">
+            <AnimateOnScroll preset="slideFromRight" delay={0.3} duration={1.2}>
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-[var(--portfolio-bg-elevated)]">
-                <div className="relative h-full w-full">
+                {/* Inner Image Parallax */}
+                <ParallaxLayer speed={0.15} className="absolute inset-x-0 -top-[15%] h-[100%] w-full">
                   <Image
-                    src="/saravanasuit.jpeg"
+                    src="/saravanaglow.jpeg"
                     alt="Saravana Priyan"
                     fill
                     priority
@@ -52,10 +53,10 @@ export function ChapterIdentity() {
                     sizes="(max-width: 640px) 70vw, 40vw"
                     quality={90}
                   />
-                </div>
+                </ParallaxLayer>
               </div>
-            </MaskReveal>
-          </ParallaxLayer>
+            </AnimateOnScroll>
+          </div>
         </div>
       </Container>
     </Chapter>
