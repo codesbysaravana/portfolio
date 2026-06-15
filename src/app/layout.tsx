@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Newsreader, Inter } from "next/font/google";
+import { Geist, Geist_Mono, Newsreader, Inter, Playfair_Display } from "next/font/google";
 import { SmoothScrollProvider } from "@/lib/scroll/smooth-scroll-provider";
 import { GSAPProvider } from "@/lib/motion/gsap-provider";
 import { ProgressBar } from "@/components/layout/progress-bar";
@@ -31,6 +31,13 @@ const inter = Inter({
   display: "swap",
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["900"],
+});
+
 export const metadata: Metadata = {
   title: "Portfolio",
   description: "A premium personal portfolio — crafted with intention.",
@@ -50,7 +57,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} ${inter.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${newsreader.variable} ${inter.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="grain">
         {/* Skip link for accessibility */}

@@ -197,6 +197,154 @@
 
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO — EDITORIAL Z-INDEX LAYERED COMPOSITION
+   Name behind + in front of portrait.
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.hero-section {
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #0D0D0F;
+}
+
+/* Subtle radial atmosphere */
+.hero-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    rgba(255, 255, 255, 0.03) 0%,
+    transparent 70%
+  );
+}
+
+/* Subtitle — top left, italic serif */
+.hero-subtitle {
+  position: absolute;
+  top: 48px;
+  left: 48px;
+  z-index: 10;
+  font-family: var(--font-newsreader), serif;
+  font-style: italic;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  color: #888;
+}
+
+/* Nav — top right */
+.hero-nav {
+  position: absolute;
+  top: 48px;
+  right: 48px;
+  z-index: 10;
+  gap: 2rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  color: #aaa;
+}
+
+.hero-nav-link {
+  transition: color 0.2s ease;
+}
+.hero-nav-link:hover {
+  color: #fff;
+}
+
+/* Name — massive editorial serif */
+.hero-name {
+  font-family: var(--font-playfair), 'Georgia', serif;
+  font-size: clamp(72px, 12vw, 180px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  margin: 0;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* Name layer — absolute left-aligned */
+.hero-name-layer {
+  position: absolute;
+  left: 48px;
+}
+
+/* First name: bottom edge at vertical center */
+.hero-name-first {
+  top: 50%;
+  transform: translateY(-100%);
+}
+
+/* Last name: top edge at vertical center */
+.hero-name-last {
+  top: 50%;
+}
+
+/* Portrait — centered, tall, no frame */
+.hero-portrait {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-portrait-inner {
+  position: relative;
+  height: 70vh;
+  aspect-ratio: 3 / 4;
+}
+
+.hero-portrait-inner img {
+  filter: brightness(0.82) contrast(1.15) saturate(0.85);
+}
+
+/* Vignette: blends gray photo background into dark page */
+.hero-portrait-vignette {
+  position: absolute;
+  inset: -15%;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 45% 48% at 50% 45%,
+    transparent 30%,
+    #0D0D0F 75%
+  );
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 640px) {
+  .hero-name {
+    font-size: clamp(48px, 14vw, 80px);
+  }
+
+  .hero-name-layer {
+    left: 24px;
+  }
+
+  .hero-subtitle {
+    top: 24px;
+    left: 24px;
+    font-size: 0.75rem;
+  }
+
+  .hero-nav {
+    top: 24px;
+    right: 24px;
+    gap: 1rem;
+    font-size: 0.75rem;
+  }
+
+  .hero-portrait-inner {
+    height: 50vh;
+  }
+}
+
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    NOISE GRAIN TEXTURE
    Subtle film grain overlay for cinematic feel.
    Pure CSS — no external assets.

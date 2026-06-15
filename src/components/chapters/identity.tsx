@@ -7,6 +7,7 @@ import { Headline } from '@/components/content/headline';
 import { EditorialText } from '@/components/content/editorial-text';
 import { MaskReveal } from '@/components/motion/mask-reveal';
 import { ParallaxLayer } from '@/components/motion/parallax-layer';
+import Image from 'next/image';
 
 /**
  * Chapter 2 — Identity
@@ -24,7 +25,7 @@ export function ChapterIdentity() {
           {/* Left — Text */}
           <div>
             <Headline as="h2" size="headline" className="mb-10">
-              Your Identity Statement
+              Hands That Build, No Passive Here
             </Headline>
 
             <div className="flex flex-col gap-6">
@@ -47,7 +48,15 @@ export function ChapterIdentity() {
                     className="font-mono uppercase"
                     style={{ fontSize: 'var(--font-size-caption)', letterSpacing: '0.12em' }}
                   >
-                    Your Image
+                    <Image
+                      src="/saravanasuit.jpeg"
+                      alt="Saravana Priyan"
+                      fill
+                      priority
+                      className="object-cover object-top"
+                      sizes="(max-width: 640px) 70vw, 40vw"
+                      quality={90}
+                    />
                   </span>
                 </div>
               </div>
