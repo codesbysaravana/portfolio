@@ -152,7 +152,7 @@ export function ChapterHero() {
             color: '#888',
           }}
         >
-          Elite Engineer &amp; Founder
+          Backend Engineer
         </div>
 
         {/* ━━ Nav — top right ━━ */}
@@ -190,19 +190,22 @@ export function ChapterHero() {
           style={{
             position: 'absolute',
             zIndex: 1,
-            left: 48,
-            top: '50%',
-            transform: 'translateY(-100%)',
+            inset: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            paddingBottom: '52vh', // Pushes text above center
           }}
         >
           <h1
             aria-label="Saravana Priyan C"
             style={{
-              fontFamily: 'var(--font-playfair), Georgia, serif',
-              fontSize: 'clamp(72px, 12vw, 180px)',
-              fontWeight: 900,
-              lineHeight: 0.9,
-              letterSpacing: '-0.03em',
+              fontFamily: 'var(--font-newsreader), Georgia, serif',
+              fontSize: 'clamp(120px, 24vw, 450px)',
+              fontWeight: 400,
+              lineHeight: 0.8,
+              letterSpacing: 'normal',
               color: '#FFFFFF',
               margin: 0,
               whiteSpace: 'nowrap',
@@ -218,38 +221,32 @@ export function ChapterHero() {
           style={{
             position: 'absolute',
             zIndex: 2,
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
+            inset: 0,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            pointerEvents: 'none',
           }}
         >
           <div
             style={{
               position: 'relative',
-              height: '70vh',
-              width: 'calc(70vh * 0.75)',
+              height: '100vh',
+              width: '40vw',
+              minWidth: '400px',
+              maxWidth: '800px',
             }}
           >
             <Image
-              src="/saravana2.png"
+              src="/saravanahero.png"
               alt="Saravana Priyan"
               fill
               priority
               className="object-cover object-top"
-              sizes="(max-width: 640px) 70vw, 40vw"
+              sizes="(max-width: 640px) 100vw, 40vw"
               quality={90}
               style={{
-                filter: 'brightness(0.82) contrast(1.15) saturate(0.85)',
-              }}
-            />
-            {/* Vignette: blends gray photo edges into dark page */}
-            <div
-              style={{
-                position: 'absolute',
-                inset: '-15%',
-                zIndex: 1,
-                pointerEvents: 'none',
-                background: 'radial-gradient(ellipse 45% 48% at 50% 45%, transparent 30%, #0D0D0F 75%)',
+                filter: 'brightness(0.82)',
               }}
             />
           </div>
@@ -261,18 +258,23 @@ export function ChapterHero() {
           style={{
             position: 'absolute',
             zIndex: 3,
-            left: 48,
-            top: '50%',
+            inset: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+            paddingTop: '50vh', // Pushes text below center
+            pointerEvents: 'none',
           }}
         >
           <span
             aria-hidden="true"
             style={{
-              fontFamily: 'var(--font-playfair), Georgia, serif',
-              fontSize: 'clamp(72px, 12vw, 180px)',
-              fontWeight: 900,
-              lineHeight: 0.9,
-              letterSpacing: '-0.03em',
+              fontFamily: 'var(--font-newsreader), Georgia, serif',
+              fontSize: 'clamp(120px, 24vw, 450px)',
+              fontWeight: 400,
+              lineHeight: 0.8,
+              letterSpacing: 'normal',
               color: '#FFFFFF',
               whiteSpace: 'nowrap',
               display: 'block',

@@ -42,22 +42,16 @@ export function ChapterIdentity() {
           <ParallaxLayer speed={-0.15}>
             <MaskReveal direction="up" delay={0.3}>
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm bg-[var(--portfolio-bg-elevated)]">
-                {/* Replace with your portrait image */}
-                <div className="h-full w-full flex items-center justify-center text-[var(--portfolio-fg-ghost)]">
-                  <span
-                    className="font-mono uppercase"
-                    style={{ fontSize: 'var(--font-size-caption)', letterSpacing: '0.12em' }}
-                  >
-                    <Image
-                      src="/saravanasuit.jpeg"
-                      alt="Saravana Priyan"
-                      fill
-                      priority
-                      className="object-cover object-top"
-                      sizes="(max-width: 640px) 70vw, 40vw"
-                      quality={90}
-                    />
-                  </span>
+                <div className="relative h-full w-full">
+                  <Image
+                    src="/saravanasuit.jpeg"
+                    alt="Saravana Priyan"
+                    fill
+                    priority
+                    className="object-cover object-top"
+                    sizes="(max-width: 640px) 70vw, 40vw"
+                    quality={90}
+                  />
                 </div>
               </div>
             </MaskReveal>
