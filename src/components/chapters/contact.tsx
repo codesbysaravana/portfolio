@@ -66,7 +66,7 @@ export function ChapterContact() {
               icon={<ExternalLink size={16} />}
             />
             <SocialLink
-              href="https://twitter.com/codesbysaravana"
+              href="https://x.com/Saravana_atX"
               label="Twitter"
               icon={<ExternalLink size={16} />}
             />
@@ -81,7 +81,7 @@ export function ChapterContact() {
         {/* Copyright */}
         <AnimateOnScroll preset="fadeIn" delay={0.5}>
           <p
-            className="absolute bottom-8 text-[var(--portfolio-fg-tertiary)]"
+            className="absolute bottom-8 left-0 w-full text-center text-[var(--portfolio-fg-tertiary)]"
             style={{
               fontSize: 'var(--font-size-caption)',
               letterSpacing: 'var(--letter-spacing-caption)',

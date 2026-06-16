@@ -154,7 +154,7 @@ export function ChapterHero() {
             lineHeight: 1,
           }}
         >
-          Elite Engineer & Founder
+          Backend Platforms Engineer
         </div>
 
         {/* ━━ Nav — top right ━━ */}
