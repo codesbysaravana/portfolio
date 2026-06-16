@@ -587,7 +587,14 @@ function ProjectSpread({
     { scope: sectionRef, dependencies: [prefersReduced] }
   );
 
-  const openLightbox = useCallback(() => setLightboxOpen(true), []);
+  const handleActivate = useCallback(() => {
+    if (project.link) {
+      window.open(project.link, '_blank', 'noopener,noreferrer');
+    } else {
+      setLightboxOpen(true);
+    }
+  }, [project.link]);
+
   const closeLightbox = useCallback(() => setLightboxOpen(false), []);
 
   return (
@@ -620,7 +627,7 @@ function ProjectSpread({
         {/* ── Row 3: Widescreen Product Image ── */}
         <div ref={imageContainerRef} className="will-change-transform">
           <MaskReveal direction="left" delay={0.3}>
-            <ProjectImage project={project} onActivate={openLightbox} />
+            <ProjectImage project={project} onActivate={handleActivate} />
           </MaskReveal>
         </div>
 
@@ -725,6 +732,55 @@ function ProjectSpread({
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PREMIUM IVORY-GOLD DIVIDER
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/** Thick premium divider between project spreads — uses global --portfolio-accent (ivory-gold) */
+function ProjectDivider() {
+  return (
+    <div
+      className="relative flex items-center justify-center px-6 md:px-12 lg:px-24 py-4"
+      aria-hidden="true"
+    >
+      {/* Outer horizontal line — full width, gradient fade */}
+      <div
+        className="absolute inset-x-6 md:inset-x-12 lg:inset-x-24 h-px"
+        style={{
+          background:
+            'linear-gradient(90deg, transparent 0%, var(--portfolio-accent-muted) 20%, var(--portfolio-accent) 50%, var(--portfolio-accent-muted) 80%, transparent 100%)',
+        }}
+      />
+      {/* Second line for thickness — offset 2px below */}
+      <div
+        className="absolute inset-x-6 md:inset-x-12 lg:inset-x-24"
+        style={{
+          height: '1px',
+          marginTop: '3px',
+          background:
+            'linear-gradient(90deg, transparent 0%, var(--portfolio-accent-muted) 25%, var(--portfolio-accent) 50%, var(--portfolio-accent-muted) 75%, transparent 100%)',
+          opacity: 0.4,
+        }}
+      />
+      {/* Center diamond glyph */}
+      <span
+        className="relative z-10 flex items-center justify-center w-8 h-8"
+        style={{
+          backgroundColor: 'var(--portfolio-bg-deep)',
+        }}
+      >
+        <span
+          className="block w-2 h-2 rotate-45"
+          style={{
+            backgroundColor: 'var(--portfolio-accent)',
+            boxShadow: '0 0 12px var(--portfolio-glow)',
+          }}
+        />
+      </span>
+    </div>
+  );
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    CHAPTER EXPORT
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
@@ -739,9 +795,12 @@ export function ChapterProjects() {
         </Headline>
       </div>
 
-      {/* Cinematic project spreads — each owns the viewport */}
+      {/* Cinematic project spreads — each owns the viewport, separated by premium gold dividers */}
       {PROJECTS.map((project, i) => (
-        <ProjectSpread key={project.slug} project={project} index={i} />
+        <div key={project.slug}>
+          <ProjectSpread project={project} index={i} />
+          {i < PROJECTS.length - 1 && <ProjectDivider />}
+        </div>
       ))}
     </Chapter>
   );

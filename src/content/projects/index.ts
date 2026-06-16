@@ -43,7 +43,7 @@ export const PROJECTS: ProjectContent[] = [
       'Pasumaicholai is an AI-powered agricultural assistant designed to empower farmers with real-time data-driven decision support. By integrating IoT sensors, satellite imagery, and machine learning, the platform provides predictive insights on crop health, irrigation needs, and pest infestations. Its intuitive interface allows farmers to monitor their fields, receive instant alerts, and access tailored recommendations—all through a simple mobile application. By bridging the gap between traditional farming practices and cutting-edge technology, Pasumaicholai aims to enhance crop yields, optimize resource utilization, and promote sustainable agriculture across Tamil Nadu.',
     techStack: ['Next.js', 'Python', 'TensorFlow', 'IoT', 'PostgreSQL'],
     image: '/projects/pasumaicholai.webp',
-    link: '#',
+    link: 'https://pasumai-cholai-client.vercel.app/',
   },
   {
     slug: 'nephele',

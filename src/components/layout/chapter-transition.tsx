@@ -9,7 +9,7 @@ export function ChapterTransition({ className }: { className?: string }) {
     <div
       aria-hidden="true"
       className={className}
-      style={{ height: '50vh', pointerEvents: 'none' }}
+      style={{ height: '30vh', pointerEvents: 'none' }}
     />
   );
 }
