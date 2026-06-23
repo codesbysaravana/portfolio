@@ -127,15 +127,15 @@ function ProjectImage({
       const x = (e.clientX - rect.left) / rect.width;
       const y = (e.clientY - rect.top) / rect.height;
 
-      const tiltX = (y - 0.5) * -6; // max ±3 degrees
-      const tiltY = (x - 0.5) * 6;
+      const tiltX = (y - 0.5) * -8; // max ±4 degrees for heavier feel
+      const tiltY = (x - 0.5) * 8;
 
       gsap.to(imageRef.current, {
         rotateX: tiltX,
         rotateY: tiltY,
-        scale: 1.02,
-        duration: 0.4,
-        ease: 'power2.out',
+        scale: 1.03,
+        duration: 0.8,
+        ease: 'expo.out',
       });
 
       /* Move glow to cursor position */
@@ -157,8 +157,8 @@ function ProjectImage({
       rotateX: 0,
       rotateY: 0,
       scale: 1,
-      duration: 0.6,
-      ease: 'power3.out',
+      duration: 1.2,
+      ease: 'expo.out',
     });
     if (glowRef.current) {
       gsap.to(glowRef.current, { opacity: 0, duration: 0.4 });
@@ -329,7 +329,7 @@ function ProjectLightbox({
       tl.fromTo(
         backdropRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 0.4, ease: 'power2.out' },
+        { opacity: 1, duration: 0.6, ease: 'expo.out' },
         0
       );
     }
@@ -337,9 +337,9 @@ function ProjectLightbox({
     if (contentRef.current) {
       tl.fromTo(
         contentRef.current,
-        { opacity: 0, scale: 0.92, y: 40 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'power3.out' },
-        0.15
+        { opacity: 0, scale: 0.95, y: 40 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'expo.out' },
+        0.1
       );
     }
   }, { dependencies: [prefersReduced] });
@@ -355,18 +355,18 @@ function ProjectLightbox({
     if (contentRef.current) {
       tl.to(contentRef.current, {
         opacity: 0,
-        scale: 0.95,
+        scale: 0.98,
         y: 20,
-        duration: 0.3,
-        ease: 'power2.in',
+        duration: 0.4,
+        ease: 'power3.inOut',
       }, 0);
     }
 
     if (backdropRef.current) {
       tl.to(backdropRef.current, {
         opacity: 0,
-        duration: 0.3,
-        ease: 'power2.in',
+        duration: 0.4,
+        ease: 'power3.inOut',
       }, 0.1);
     }
   }, [onClose, prefersReduced]);
@@ -560,29 +560,99 @@ function ProjectSpread({
 }) {
   const sectionRef = useRef<HTMLElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
+  const metaRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const imageRevealRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const techRef = useRef<HTMLDivElement>(null);
+  const actionsRef = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
-  /* ── Cinematic parallax — image drifts against scroll ── */
+  /* ── Cinematic Parallax & Staggered Reveal ── */
   useGSAP(
     () => {
-      if (prefersReduced || !imageContainerRef.current || !sectionRef.current)
-        return;
+      if (prefersReduced || !sectionRef.current) return;
 
-      gsap.fromTo(
-        imageContainerRef.current,
-        { yPercent: 4 },
-        {
-          yPercent: -4,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1.5,
-          },
-        }
-      );
+      // Parallax for image
+      if (imageContainerRef.current) {
+        gsap.fromTo(
+          imageContainerRef.current,
+          { yPercent: 4 },
+          {
+            yPercent: -4,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2,
+            },
+          }
+        );
+      }
+
+      // Master staggered entrance timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 75%',
+        },
+      });
+
+      if (metaRef.current) {
+        tl.fromTo(
+          metaRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 1, ease: 'expo.out' },
+          0
+        );
+      }
+
+      if (titleRef.current) {
+        tl.fromTo(
+          titleRef.current,
+          { clipPath: 'inset(100% 0 0 0)', y: 20 },
+          { clipPath: 'inset(0% 0 0 0)', y: 0, duration: 1.2, ease: 'expo.out' },
+          0.1
+        );
+      }
+
+      if (imageRevealRef.current) {
+        tl.fromTo(
+          imageRevealRef.current,
+          { clipPath: 'inset(0 100% 0 0)', scale: 1.05 },
+          { clipPath: 'inset(0 0% 0 0)', scale: 1, duration: 1.5, ease: 'expo.out' },
+          0.2
+        );
+      }
+
+      if (contentRef.current) {
+        tl.fromTo(
+          contentRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 1, ease: 'expo.out' },
+          0.4
+        );
+      }
+
+      if (techRef.current) {
+        tl.fromTo(
+          techRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 1, ease: 'expo.out' },
+          0.5
+        );
+      }
+
+      if (actionsRef.current) {
+        tl.fromTo(
+          actionsRef.current,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 1, ease: 'expo.out' },
+          0.6
+        );
+      }
     },
     { scope: sectionRef, dependencies: [prefersReduced] }
   );
@@ -605,7 +675,7 @@ function ProjectSpread({
         style={{ minHeight: '100vh' }}
       >
         {/* ── Row 1: Index + Category ── */}
-        <AnimateOnScroll preset="fadeUp">
+        <div ref={metaRef} className="will-change-[opacity,transform] opacity-0">
           <span
             className="block mb-6 md:mb-8 font-mono uppercase"
             style={{
@@ -615,26 +685,26 @@ function ProjectSpread({
           >
             {String(index + 1).padStart(2, '0')} — {project.category}
           </span>
-        </AnimateOnScroll>
+        </div>
 
         {/* ── Row 2: Massive Title ── */}
-        <MaskReveal direction="up">
+        <div ref={titleRef} className="will-change-[clip-path,transform]" style={{ clipPath: 'inset(100% 0 0 0)' }}>
           <h3 style={styles.title} className="mb-10 md:mb-14">
             {project.title}
           </h3>
-        </MaskReveal>
+        </div>
 
         {/* ── Row 3: Widescreen Product Image ── */}
         <div ref={imageContainerRef} className="will-change-transform">
-          <MaskReveal direction="left" delay={0.3}>
+          <div ref={imageRevealRef} className="will-change-[clip-path,transform]" style={{ clipPath: 'inset(0 100% 0 0)' }}>
             <ProjectImage project={project} onActivate={handleActivate} />
-          </MaskReveal>
+          </div>
         </div>
 
         {/* ── Row 4: Tagline + Description + Actions ── */}
         <div className="mt-10 md:mt-14 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12">
           <div className="lg:col-span-7">
-            <AnimateOnScroll preset="fadeUp" delay={0.4}>
+            <div ref={contentRef} className="will-change-[opacity,transform] opacity-0">
               <p
                 className="mb-3"
                 style={{
@@ -657,21 +727,21 @@ function ProjectSpread({
               >
                 {project.description}
               </p>
-            </AnimateOnScroll>
+            </div>
 
             {/* Tech pills */}
-            <AnimateOnScroll preset="fadeUp" delay={0.5}>
+            <div ref={techRef} className="will-change-[opacity,transform] opacity-0">
               <div className="flex flex-wrap gap-2 mt-5">
                 {project.techStack.map((tech) => (
                   <TechPill key={tech} label={tech} />
                 ))}
               </div>
-            </AnimateOnScroll>
+            </div>
           </div>
 
           {/* Actions */}
           <div className="lg:col-span-5 lg:col-start-8 flex items-end lg:justify-end gap-4">
-            <AnimateOnScroll preset="fadeUp" delay={0.6}>
+            <div ref={actionsRef} className="will-change-[opacity,transform] opacity-0">
               <div className="flex flex-wrap gap-3">
                 {project.link && (
                   <a
@@ -718,7 +788,7 @@ function ProjectSpread({
                   </a>
                 )}
               </div>
-            </AnimateOnScroll>
+            </div>
           </div>
         </div>
       </article>

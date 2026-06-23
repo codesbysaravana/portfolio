@@ -15,20 +15,24 @@ import { PrincipleCard } from '@/components/content/principle-card';
 
 const PRINCIPLES = [
   {
-    title: 'Your First Principle',
-    description: 'A concise explanation of this belief and how it shapes your work.',
+    title: 'Build Before You Feel Ready',
+    description:
+      'Most opportunities are won by execution, not confidence. I learn by building, breaking, shipping, and improving in public.',
   },
   {
-    title: 'Your Second Principle',
-    description: 'Another belief that guides your decisions and craft.',
+    title: 'Systems Over Shortcuts',
+    description:
+      'I focus on creating scalable systems rather than temporary fixes. Whether it is cloud infrastructure, backend architecture, or workflows, good systems compound.',
   },
   {
-    title: 'Your Third Principle',
-    description: 'What you stand for. What you optimize for. What you refuse to compromise on.',
+    title: 'Learn Through Creation',
+    description:
+      'Courses teach concepts. Projects teach reality. Every skill I have today was earned through building real products and solving real problems.',
   },
   {
-    title: 'Your Fourth Principle',
-    description: 'The final principle that completes the picture of who you are as a craftsperson.',
+    title: 'Understand before automating',
+    description:
+      'AI accelerates execution, but understanding creates expertise. I believe in learning the fundamentals, understanding the architecture.',
   },
 ];
 
