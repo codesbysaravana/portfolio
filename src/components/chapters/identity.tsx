@@ -25,15 +25,18 @@ export function ChapterIdentity() {
           {/* Left — Text */}
           <div>
             <Headline as="h2" size="headline" className="mb-10">
-              Hands That Build, No Passive Here
+              I don't chase trends.
+              <br className="block lg:hidden" />
+              {/* {text-red-700} */}
+              <span className="text-[#B22222]"> I build systems.</span>
             </Headline>
 
             <div className="flex flex-col gap-6">
               <EditorialText>
-                Your first paragraph goes here. Write about who you are, what drives you, and why you do what you do.
+                From cloud-native infrastructure and backend services to AI-powered products, I learn through execution. Every project is an opportunity to solve harder problems, create greater leverage, and push beyond what I knew yesterday.
               </EditorialText>
               <EditorialText delay={0.15}>
-                Your second paragraph continues the story. This is your positioning — not a biography, but a declaration of intent.
+                My focus is simple: build useful things, scale them well, and never stop improving the craft.
               </EditorialText>
             </div>
           </div>

@@ -57,7 +57,7 @@ export interface AnimateOnScrollProps {
 }
 
 export interface TextRevealProps {
-  children: string;
+  children: React.ReactNode;
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span';
   className?: string;
   style?: React.CSSProperties;

@@ -44,34 +44,48 @@ export function useTextReveal<T extends HTMLElement = HTMLElement>(
     const el = ref.current;
     const text = el.textContent || '';
 
-    // Split text into units
-    const units = splitType === 'words'
-      ? text.split(/\s+/).filter(Boolean)
-      : text.split('').filter(Boolean);
+    // Save copy of original child nodes to process them while preserving tags/classes
+    const originalNodes = Array.from(el.childNodes);
 
     // Clear original text and build wrapped spans
     el.innerHTML = '';
     el.setAttribute('aria-label', text);
 
-    units.forEach((unit, i) => {
-      const wrapper = document.createElement('span');
-      wrapper.style.display = 'inline-block';
-      wrapper.style.overflow = 'hidden';
-      wrapper.style.verticalAlign = 'top';
-      wrapper.setAttribute('aria-hidden', 'true');
+    const processTextNode = (txt: string, container: HTMLElement) => {
+      // Split text into words or characters, keeping whitespaces
+      const tokens = splitType === 'words'
+        ? (txt.match(/\S+|\s+/g) || [])
+        : txt.split('');
 
-      const inner = document.createElement('span');
-      inner.style.display = 'inline-block';
-      inner.textContent = unit;
-      inner.classList.add('text-reveal-unit');
+      tokens.forEach((token) => {
+        if (splitType === 'words' && /^\s+$/.test(token)) {
+          // It's whitespace, append a non-breaking space
+          container.appendChild(document.createTextNode('\u00A0'));
+        } else {
+          const wrapper = document.createElement('span');
+          wrapper.style.display = 'inline-block';
+          wrapper.style.overflow = 'hidden';
+          wrapper.style.verticalAlign = 'top';
+          wrapper.setAttribute('aria-hidden', 'true');
 
-      wrapper.appendChild(inner);
-      el.appendChild(wrapper);
+          const inner = document.createElement('span');
+          inner.style.display = 'inline-block';
+          inner.textContent = token;
+          inner.classList.add('text-reveal-unit');
 
-      // Add space between words
-      if (splitType === 'words' && i < units.length - 1) {
-        const space = document.createTextNode('\u00A0');
-        el.appendChild(space);
+          wrapper.appendChild(inner);
+          container.appendChild(wrapper);
+        }
+      });
+    };
+
+    originalNodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        processTextNode(node.textContent || '', el);
+      } else if (node.nodeType === Node.ELEMENT_NODE) {
+        const clone = node.cloneNode(false) as HTMLElement; // Clones the node and its attributes/classes, but no children
+        processTextNode(node.textContent || '', clone);
+        el.appendChild(clone);
       }
     });
 

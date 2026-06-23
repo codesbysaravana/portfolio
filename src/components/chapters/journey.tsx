@@ -18,32 +18,40 @@ import { TimelineNode } from '@/components/content/timeline-node';
 
 const TIMELINE_DATA = [
   {
-    year: 'Chapter 01',
-    title: 'The Curiosity',
+    year: '2023',
+    title: 'The Beginning',
     description:
-      'It started with a simple question: how do the things we use every day actually work? Programming was the entry point, but understanding became the goal.',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop',
+      'My journey started with curiosity. As a first-year AI & Data Science student, I found myself constantly asking how software, websites, and the technology around me actually worked. Learning to code became more than a skill—it became a way of understanding the world.',
+    image:
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop',
+    color: '#f43f5e', // Rose
   },
   {
-    year: 'Chapter 02',
+    year: '2024',
     title: 'The Builder',
     description:
-      'What began as small applications evolved into full-stack systems. Every project became an excuse to learn something new and push a little deeper.',
-    image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1000&auto=format&fit=crop',
+      'Curiosity turned into creation. I began building projects relentlessly—frontend applications, backend APIs, databases, and automation tools. Every project became an experiment, every bug became a lesson, and every deployment pushed me one step closer to becoming a real engineer.',
+    image:
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1000&auto=format&fit=crop',
+    color: '#10b981', // Emerald
   },
   {
-    year: 'Chapter 03',
-    title: 'The Systems Thinker',
+    year: '2025',
+    title: 'Cloud, DevOps & Scale',
     description:
-      'Applications led to databases. Databases led to operating systems, networking, distributed systems, and cloud infrastructure. I became fascinated by the layers beneath the code.',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000&auto=format&fit=crop',
+      'My focus shifted beneath the application layer. I became fascinated by cloud architecture, containers, CI/CD pipelines, Kubernetes, infrastructure automation, and distributed systems. This was also the year I won an AI & Cloud Hackathon and began building products that combined Backend Engineering, Cloud Computing, DevOps, and AI.',
+    image:
+      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000&auto=format&fit=crop',
+    color: '#6366f1', // Indigo
   },
   {
-    year: 'Chapter 04',
-    title: 'The Explorer',
+    year: '2026',
+    title: 'Leadership & Impact',
     description:
-      'Today my focus sits at the intersection of backend engineering, cloud platforms, and AI systems. Not because they are trends, but because they represent some of the most interesting problems to solve.',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop',
+      'Today, I serve as the AWS Student Builder Groups Leader while continuing to build cloud-native and AI-powered products. Beyond writing code, I focus on creating opportunities for others—sharing knowledge, leading communities, organizing initiatives, and helping students discover the same excitement for technology that started this journey.',
+    image:
+      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop',
+    color: '#eab308', // Amber
   },
 ];
 
@@ -68,13 +76,16 @@ export function ChapterJourney() {
                 className="cursor-pointer"
               >
                 <div
-                  className={`transition-opacity duration-500 ease-in-out ${activeIndex === i ? 'opacity-100' : 'opacity-40 hover:opacity-70'
-                    }`}
+                  className={`transition-opacity duration-500 ease-in-out ${
+                    activeIndex === i ? 'opacity-100' : 'opacity-40 hover:opacity-70'
+                  }`}
                 >
                   <TimelineNode
                     year={node.year}
                     title={node.title}
                     description={node.description}
+                    isActive={activeIndex === i}
+                    color={node.color}
                   />
                 </div>
               </div>
@@ -82,24 +93,36 @@ export function ChapterJourney() {
           </div>
 
           {/* Right Side: Image Panel */}
-          <div className="hidden lg:block sticky top-32 h-[600px] w-full rounded-2xl overflow-hidden bg-[var(--portfolio-bg-secondary)] border border-[var(--portfolio-border)] shadow-xl">
-            {TIMELINE_DATA.map((node, i) => (
-              <div
-                key={`img-${i}`}
-                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${activeIndex === i ? 'opacity-100 z-10' : 'opacity-0 z-0'
+          <div className="hidden lg:block sticky top-32 h-[600px] w-full rounded-2xl bg-[var(--portfolio-bg-secondary)] border border-[var(--portfolio-border)] shadow-xl transition-all duration-700">
+            {/* Ambient dynamic color glow matching active year */}
+            <div
+              className="absolute -inset-12 opacity-15 blur-3xl rounded-3xl transition-all duration-1000 -z-10"
+              style={{
+                background: `radial-gradient(circle, ${TIMELINE_DATA[activeIndex].color} 0%, transparent 70%)`,
+              }}
+            />
+            
+            <div className="relative w-full h-full rounded-2xl overflow-hidden">
+              {TIMELINE_DATA.map((node, i) => (
+                <div
+                  key={`img-${i}`}
+                  className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                    activeIndex === i ? 'opacity-100 z-10' : 'opacity-0 z-0'
                   }`}
-              >
-                {/* Subtle cinematic overlay */}
-                <div className="absolute inset-0 bg-black/10 z-10 mix-blend-overlay" />
+                >
+                  {/* Subtle cinematic overlay */}
+                  <div className="absolute inset-0 bg-black/10 z-10 mix-blend-overlay" />
 
-                <img
-                  src={node.image}
-                  alt={node.title}
-                  className={`w-full h-full object-cover transition-transform duration-[2000ms] ease-out ${activeIndex === i ? 'scale-100' : 'scale-110'
+                  <img
+                    src={node.image}
+                    alt={node.title}
+                    className={`w-full h-full object-cover transition-transform duration-[2000ms] ease-out ${
+                      activeIndex === i ? 'scale-100' : 'scale-110'
                     }`}
-                />
-              </div>
-            ))}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </Container>

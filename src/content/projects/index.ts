@@ -30,6 +30,12 @@ export interface ProjectContent {
   link?: string;
   /** Optional case study URL */
   caseStudyLink?: string;
+  /** Looping preview video path (mp4). Falls back to image if not provided. */
+  video?: string;
+  /** GitHub repository URL */
+  github?: string;
+  /** Architecture documentation or diagram URL */
+  architectureLink?: string;
 }
 
 export const PROJECTS: ProjectContent[] = [
