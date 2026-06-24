@@ -301,6 +301,118 @@ function TechPill({ label }: { label: string }) {
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ARCHITECTURE DIAGRAM DATA
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+const ARCHITECTURE_FLOWS: Record<string, string[]> = {
+  pasumaicholai: ['User', 'Frontend', 'Backend', 'ML Engine', 'Database', 'Insights'],
+  nephele: ['User', 'Interface Layer', 'Interaction Engine', 'AI Services', 'Response Layer'],
+  microps: ['Frontend', 'API Layer', 'Workflow Engine', 'Queue System', 'Workers', 'Cloud Services'],
+};
+
+/** Minimal horizontal architecture flow diagram — SVG-based */
+function ArchitectureDiagram({ slug }: { slug: string }) {
+  const flow = ARCHITECTURE_FLOWS[slug];
+  if (!flow) return null;
+
+  const nodeWidth = 130;
+  const nodeHeight = 40;
+  const arrowGap = 40;
+  const totalWidth = flow.length * nodeWidth + (flow.length - 1) * arrowGap;
+  const svgHeight = 72;
+
+  return (
+    <div className="mb-10 md:mb-14">
+      {/* Section label */}
+      <span
+        className="block mb-5 font-mono uppercase"
+        style={{
+          fontSize: 'var(--font-size-overline, 0.6875rem)',
+          letterSpacing: 'var(--letter-spacing-overline, 0.12em)',
+          color: 'var(--portfolio-fg-tertiary)',
+        }}
+      >
+        Architecture
+      </span>
+
+      {/* Scrollable diagram container */}
+      <div
+        className="overflow-x-auto rounded-lg px-6 py-6"
+        style={{
+          backgroundColor: 'rgba(255,255,255,0.03)',
+          border: '1px solid var(--portfolio-border)',
+        }}
+      >
+        <svg
+          viewBox={`0 0 ${totalWidth} ${svgHeight}`}
+          width={totalWidth}
+          height={svgHeight}
+          className="block mx-auto"
+          role="img"
+          aria-label={`Architecture flow: ${flow.join(' → ')}`}
+          style={{ minWidth: totalWidth }}
+        >
+          {flow.map((label, i) => {
+            const x = i * (nodeWidth + arrowGap);
+            const centerY = svgHeight / 2;
+
+            return (
+              <g key={i}>
+                {/* Node box */}
+                <rect
+                  x={x}
+                  y={centerY - nodeHeight / 2}
+                  width={nodeWidth}
+                  height={nodeHeight}
+                  rx={6}
+                  ry={6}
+                  fill="none"
+                  stroke="rgba(255,255,255,0.12)"
+                  strokeWidth={1}
+                />
+                {/* Node label */}
+                <text
+                  x={x + nodeWidth / 2}
+                  y={centerY + 1}
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fill="rgba(255,255,255,0.7)"
+                  style={{
+                    fontSize: '10px',
+                    fontFamily: 'var(--font-geist-mono), monospace',
+                    letterSpacing: '0.03em',
+                  }}
+                >
+                  {label}
+                </text>
+
+                {/* Arrow to next node */}
+                {i < flow.length - 1 && (
+                  <>
+                    <line
+                      x1={x + nodeWidth + 4}
+                      y1={centerY}
+                      x2={x + nodeWidth + arrowGap - 4}
+                      y2={centerY}
+                      stroke="var(--portfolio-accent-muted)"
+                      strokeWidth={1}
+                    />
+                    <polygon
+                      points={`${x + nodeWidth + arrowGap - 4},${centerY - 3.5} ${x + nodeWidth + arrowGap - 4},${centerY + 3.5} ${x + nodeWidth + arrowGap + 2},${centerY}`}
+                      fill="var(--portfolio-accent-muted)"
+                    />
+                  </>
+                )}
+              </g>
+            );
+          })}
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    FULLSCREEN LIGHTBOX — PREMIUM PRODUCT MODAL
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
@@ -569,6 +681,9 @@ function ProjectLightbox({
             )}
           </div>
         </div>
+
+        {/* ── Section 2.5: Architecture Diagram ── */}
+        <ArchitectureDiagram slug={project.slug} />
 
         {/* ── Section 3: Action Area ── */}
         <div ref={actionsRef} className="pb-8">
@@ -972,7 +1087,7 @@ export function ChapterProjects() {
     <Chapter id="projects" bg="deep" label="Projects" flush>
       {/* Section introduction — within standard padding */}
       <div className="px-6 md:px-12 lg:px-24 pt-32 md:pt-48">
-        <ChapterOverline number={5} />
+        <ChapterOverline number={7} />
         <Headline as="h2" size="headline" className="mb-0">
           Selected Work
         </Headline>

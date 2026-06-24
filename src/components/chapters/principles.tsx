@@ -40,7 +40,7 @@ export function ChapterPrinciples() {
   return (
     <Chapter id="principles" bg="primary" label="Principles">
       <Container width="wide" className="py-32 md:py-48">
-        <ChapterOverline number={6} />
+        <ChapterOverline number={8} />
         <Headline as="h2" size="headline" className="mb-16 md:mb-24">
           Principles
         </Headline>

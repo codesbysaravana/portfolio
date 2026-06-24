@@ -34,6 +34,7 @@ export function ChapterHero() {
   const firstNameRef = useRef<HTMLDivElement>(null);
   const portraitRef = useRef<HTMLDivElement>(null);
   const lastNameRef = useRef<HTMLDivElement>(null);
+  const resumeRef = useRef<HTMLAnchorElement>(null);
   const prefersReduced = useReducedMotion();
 
   useEffect(() => {
@@ -46,6 +47,7 @@ export function ChapterHero() {
       gsap.set(firstNameRef.current, { opacity: 0, x: -40 });
       gsap.set(portraitRef.current, { opacity: 0, scale: 1.05 });
       gsap.set(lastNameRef.current, { opacity: 0, x: 40 });
+      gsap.set(resumeRef.current, { opacity: 0, y: 10 });
 
       // ── ENTRANCE TIMELINE ──
       const tl = gsap.timeline({ delay: 0.2 });
@@ -74,6 +76,11 @@ export function ChapterHero() {
       tl.to(lastNameRef.current, {
         opacity: 1, x: 0, duration: 1.2, ease: 'power4.out',
       }, 0.9);
+
+      // 6. Resume button fades in
+      tl.to(resumeRef.current, {
+        opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+      }, 1.1);
 
       // ── SCROLL-LINKED PARALLAX ──
       const scrollTl = gsap.timeline({
@@ -107,7 +114,7 @@ export function ChapterHero() {
       }
 
       // Subtitle + Nav fade
-      scrollTl.to([subtitleRef.current, navRef.current], {
+      scrollTl.to([subtitleRef.current, navRef.current, resumeRef.current], {
         opacity: 0, ease: 'none',
       }, 0);
     }, sectionRef);
@@ -285,17 +292,71 @@ export function ChapterHero() {
           </span>
         </div>
 
-        {/* ━━ Scroll Indicator ━━ */}
+        {/* ━━ Bottom Bar: Scroll Indicator + Resume ━━ */}
         <div
           style={{
             position: 'absolute',
             bottom: 32,
-            left: '50%',
-            transform: 'translateX(-50%)',
+            left: 0,
+            right: 0,
             zIndex: 10,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '2rem',
           }}
         >
           <ScrollIndicator />
+          <a
+            ref={resumeRef}
+            href="/resume.pdf"
+            download
+            style={{
+              position: 'absolute',
+              right: 48,
+              bottom: 0,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.625rem 1.25rem',
+              fontFamily: 'var(--font-geist-mono), monospace',
+              fontSize: '0.6875rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: '#aaa',
+              border: '1px solid rgba(255,255,255,0.12)',
+              borderRadius: '6px',
+              textDecoration: 'none',
+              transition: 'color 0.2s, border-color 0.2s',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = '#aaa';
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)';
+            }}
+          >
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Download Resume
+          </a>
         </div>
       </div>
     </Chapter>

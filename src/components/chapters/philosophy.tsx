@@ -18,7 +18,7 @@ export function ChapterPhilosophy() {
   return (
     <Chapter id="philosophy" bg="primary" label="Engineering Philosophy">
       <Container width="narrow" className="py-32 md:py-48 mx-auto">
-        <ChapterOverline number={4} />
+        <ChapterOverline number={6} />
         <Headline as="h2" size="headline" className="mb-16 md:mb-20">
           Engineering Philosophy
         </Headline>
