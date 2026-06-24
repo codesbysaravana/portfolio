@@ -1,6 +1,7 @@
 'use client';
 
 import { AnimateOnScroll } from '@/components/motion/animate-on-scroll';
+import { ShinyText } from '@/components/motion/shiny-text';
 import { cn } from '@/lib/utils';
 
 interface ChapterOverlineProps {
@@ -27,7 +28,17 @@ export function ChapterOverline({ number, className }: ChapterOverlineProps) {
           letterSpacing: 'var(--letter-spacing-overline, 0.12em)',
         }}
       >
-        Chapter {formattedNumber}
+        <ShinyText
+          text={`Chapter ${formattedNumber}`}
+          speed={5}
+          delay={3}
+          spread={100}
+          direction="left"
+          pauseOnHover={false}
+          yoyo={false}
+          color="var(--portfolio-fg-tertiary)"
+          shineColor="#D4B06A"
+        />
       </span>
     </AnimateOnScroll>
   );

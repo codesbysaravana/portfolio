@@ -27,8 +27,8 @@ export function ChapterIdentity() {
             <Headline as="h2" size="headline" className="mb-10">
               I don't chase trends.
               <br className="block lg:hidden" />
-              {/* {text-red-700} */}
-              <span className="text-[#B22222]"> I build systems.</span>
+
+
             </Headline>
 
             <div className="flex flex-col gap-6">

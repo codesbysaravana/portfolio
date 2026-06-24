@@ -1,18 +1,18 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import gsap from 'gsap';
+import { useState } from 'react';
 import { Chapter } from '@/components/layout/chapter';
 import { Container } from '@/components/layout/container';
 import { ChapterOverline } from '@/components/content/chapter-overline';
 import { Headline } from '@/components/content/headline';
 import { AnimateOnScroll } from '@/components/motion/animate-on-scroll';
+import BorderGlow from '@/components/motion/border-glow';
 
 /**
  * Chapter 5 — Engineering Domains
  *
- * A premium, museum-like exhibition of engineering capabilities.
- * Features ambient horizontal drift that softly pauses and expands on hover.
+ * A premium, stable, editorial exhibition of engineering capabilities.
+ * Split-layout design: list on the left, persistent content panel on the right.
  */
 
 interface TechCategory {
@@ -61,242 +61,148 @@ const DOMAINS: TechCategory[] = [
   },
 ];
 
-function DomainCard({
-  category,
-  isActive,
-  isFaded,
-  onHover,
-  onLeave,
-}: {
-  category: TechCategory;
-  isActive: boolean;
-  isFaded: boolean;
-  onHover: () => void;
-  onLeave: () => void;
-}) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const itemsRef = useRef<HTMLUListElement>(null);
-
-  useEffect(() => {
-    if (!cardRef.current) return;
-
-    const ctx = gsap.context(() => {
-      // In-place layout transition
-      if (isActive) {
-        gsap.to(cardRef.current, {
-          scale: 1.02,
-          backgroundColor: 'rgba(20, 20, 23, 0.95)',
-          borderColor: `${category.accent}30`,
-          boxShadow: `0 20px 40px -10px rgba(0,0,0,0.6), 0 0 40px ${category.accent}10`,
-          filter: 'blur(0px)',
-          opacity: 1,
-          duration: 0.8,
-          ease: 'power3.out',
-        });
-
-        // Expand container height to fit items
-        gsap.to(contentRef.current, {
-          height: 'auto',
-          marginTop: 24,
-          opacity: 1,
-          duration: 0.6,
-          ease: 'power3.out',
-        });
-
-        // Stagger items in
-        if (itemsRef.current) {
-          gsap.fromTo(
-            itemsRef.current.children,
-            { opacity: 0, y: 10 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.5,
-              stagger: 0.05,
-              ease: 'power2.out',
-            }
-          );
-        }
-      } else {
-        gsap.to(cardRef.current, {
-          scale: isFaded ? 0.98 : 1,
-          backgroundColor: 'transparent',
-          borderColor: 'transparent',
-          boxShadow: 'none',
-          opacity: isFaded ? 0.3 : 1,
-          filter: isFaded ? 'blur(3px)' : 'blur(0px)',
-          duration: 0.8,
-          ease: 'power3.out',
-        });
-
-        // Collapse container
-        gsap.to(contentRef.current, {
-          height: 0,
-          marginTop: 0,
-          opacity: 0,
-          duration: 0.5,
-          ease: 'power2.inOut',
-        });
-      }
-    }, cardRef);
-
-    return () => ctx.revert();
-  }, [isActive, isFaded, category.accent]);
+function DomainExplorer() {
+  // First domain is active by default so the panel is never empty
+  const [activeId, setActiveId] = useState<string>(DOMAINS[0].id);
 
   return (
-    <div
-      ref={cardRef}
-      onMouseEnter={onHover}
-      onMouseLeave={onLeave}
-      className="flex-shrink-0 w-[280px] md:w-[360px] p-6 md:p-8 rounded-[2rem] border border-transparent transition-colors cursor-default"
-      style={{
-        backdropFilter: isActive ? 'blur(16px)' : 'none',
-      }}
-    >
-      <div className="flex flex-col h-full items-start">
-        {/* Node Label & Dot */}
-        <div className="flex items-center gap-4">
-          <span
-            className="block w-2 h-2 rounded-full relative shrink-0"
-            style={{ backgroundColor: category.accent }}
-          >
-            <span
-              className="absolute inset-0 rounded-full animate-ping opacity-50"
-              style={{ backgroundColor: category.accent, animationDuration: '4s' }}
-            />
-          </span>
-          <h3
-            className="font-mono uppercase whitespace-nowrap m-0"
-            style={{
-              fontSize: 'var(--font-size-caption, 0.8125rem)',
-              letterSpacing: 'var(--letter-spacing-overline, 0.12em)',
-              color: isActive ? category.accent : 'var(--portfolio-fg-secondary)',
-              fontWeight: isActive ? 600 : 400,
-              transition: 'color 0.6s, font-weight 0.6s',
-            }}
-          >
-            {category.name}
-          </h3>
-        </div>
+    <div className="w-full pt-8 pb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-10 lg:gap-24 items-start">
 
-        {/* Node Content (Items) */}
-        <div
-          ref={contentRef}
-          className="overflow-hidden w-full flex justify-start"
-          style={{ height: 0, opacity: 0 }}
+        {/* Left Side: Navigation List */}
+        <nav
+          className="flex flex-row lg:flex-col flex-wrap gap-2 lg:gap-3"
+          aria-label="Engineering Domains Navigation"
         >
-          <ul
-            ref={itemsRef}
-            className="flex flex-col gap-3 items-start w-full"
-            style={{ listStyle: 'none', padding: 0, margin: 0 }}
-          >
-            {category.items.map((item) => (
-              <li
-                key={item}
-                className="whitespace-nowrap"
+          {DOMAINS.map((domain) => {
+            const isActive = activeId === domain.id;
+
+            return (
+              <button
+                key={domain.id}
+                onClick={() => setActiveId(domain.id)}
+                onMouseEnter={() => setActiveId(domain.id)}
+                className="relative text-left px-5 py-4 rounded-xl transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-white/30"
                 style={{
-                  fontSize: 'var(--font-size-body-lg, 1.125rem)',
-                  lineHeight: 'var(--line-height-body, 1.6)',
-                  color: 'var(--portfolio-fg-primary)',
-                  letterSpacing: '-0.01em',
+                  backgroundColor: isActive ? 'rgba(255, 255, 255, 0.03)' : 'transparent',
                 }}
+                aria-pressed={isActive}
               >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
+                {/* Active Indicator Line (Desktop: left, Mobile: bottom or hidden. Using a subtle glow/border instead for luxury feel) */}
+                <span
+                  className="absolute left-0 top-1/2 -translate-y-1/2 w-1 rounded-r-full transition-all duration-500 ease-out hidden lg:block"
+                  style={{
+                    height: isActive ? '60%' : '0%',
+                    backgroundColor: domain.accent,
+                    boxShadow: isActive ? `0 0 12px ${domain.accent}60` : 'none',
+                    opacity: isActive ? 1 : 0,
+                  }}
+                />
 
-function EngineeringGallery() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const tweenRef = useRef<gsap.core.Tween | null>(null);
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-
-  // Create a continuous seamless track by duplicating the blocks
-  // Total of 12 items. Block 1 (indices 0-5), Block 2 (indices 6-11).
-  const extendedDomains = [...DOMAINS, ...DOMAINS];
-
-  useEffect(() => {
-    if (!trackRef.current) return;
-
-    const ctx = gsap.context(() => {
-      // Infinitely drift to -50% to seamlessly loop the two identical blocks
-      tweenRef.current = gsap.to(trackRef.current, {
-        xPercent: -50,
-        ease: "none",
-        duration: 40, // 40 seconds per loop for ambient drift
-        repeat: -1,
-      });
-    }, trackRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  useEffect(() => {
-    if (tweenRef.current) {
-      // Smoothly pause timeScale to 0 when hovered, and back to 1 when unhovered
-      gsap.to(tweenRef.current, {
-        timeScale: activeIndex !== null ? 0 : 1,
-        duration: 1.2,
-        ease: 'power3.out',
-      });
-    }
-  }, [activeIndex]);
-
-  return (
-    <div className="relative w-full overflow-hidden py-12 md:py-20">
-      {/* Soft edge masks to blend the track into the background */}
-      <div
-        className="absolute inset-y-0 left-0 w-20 md:w-40 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to right, var(--portfolio-bg-elevated) 0%, transparent 100%)' }}
-      />
-      <div
-        className="absolute inset-y-0 right-0 w-20 md:w-40 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to left, var(--portfolio-bg-elevated) 0%, transparent 100%)' }}
-      />
-
-      {/* The Scrolling Track Container */}
-      <div className="flex w-max" ref={trackRef}>
-
-        {/* Block 1 */}
-        <div className="flex gap-4 md:gap-8 pr-4 md:pr-8">
-          {DOMAINS.map((domain, index) => {
-            const actualIndex = index;
-            return (
-              <DomainCard
-                key={`${domain.id}-1`}
-                category={domain}
-                isActive={activeIndex === actualIndex}
-                isFaded={activeIndex !== null && activeIndex !== actualIndex}
-                onHover={() => setActiveIndex(actualIndex)}
-                onLeave={() => setActiveIndex(null)}
-              />
+                <div className="flex items-center gap-3">
+                  {/* Subtle Dot Indicator */}
+                  <span
+                    className="w-1.5 h-1.5 rounded-full transition-all duration-500"
+                    style={{
+                      backgroundColor: isActive ? domain.accent : 'var(--portfolio-fg-tertiary)',
+                      transform: isActive ? 'scale(1.5)' : 'scale(1)',
+                      boxShadow: isActive ? `0 0 8px ${domain.accent}80` : 'none',
+                      opacity: isActive ? 1 : 0.3,
+                    }}
+                  />
+                  <span
+                    className="font-mono uppercase tracking-[0.1em] whitespace-nowrap transition-all duration-500"
+                    style={{
+                      fontSize: 'var(--font-size-caption, 0.8125rem)',
+                      color: isActive ? domain.accent : 'var(--portfolio-fg-tertiary)',
+                      fontWeight: isActive ? 600 : 400,
+                    }}
+                  >
+                    {domain.name}
+                  </span>
+                </div>
+              </button>
             );
           })}
-        </div>
+        </nav>
 
-        {/* Block 2 (Identical Clone for Seamless Loop) */}
-        <div className="flex gap-4 md:gap-8 pr-4 md:pr-8">
-          {DOMAINS.map((domain, index) => {
-            const actualIndex = index + DOMAINS.length;
-            return (
-              <DomainCard
-                key={`${domain.id}-2`}
-                category={domain}
-                isActive={activeIndex === actualIndex}
-                isFaded={activeIndex !== null && activeIndex !== actualIndex}
-                onHover={() => setActiveIndex(actualIndex)}
-                onLeave={() => setActiveIndex(null)}
-              />
-            );
-          })}
-        </div>
+        {/* Right Side: Persistent Content Panel */}
+        <BorderGlow
+          className="w-full min-h-[350px] lg:min-h-[400px]"
+          edgeSensitivity={20}
+          glowColor="42 55 72"
+          backgroundColor="var(--portfolio-bg-surface)"
+          borderRadius={32}
+          glowRadius={24}
+          glowIntensity={0.25}
+          coneSpread={18}
+          animated={false}
+          colors={['#D4AF37', '#E8D9B5', '#C5A861']}
+        >
+          <div className="relative w-full h-full flex items-center p-8 lg:p-12">
+            {DOMAINS.map((domain) => {
+              const isActive = activeId === domain.id;
 
+              return (
+                <div
+                  key={`panel-${domain.id}`}
+                  className="absolute inset-0 p-8 lg:p-12 flex flex-col justify-center transition-all duration-700 ease-out pointer-events-none"
+                  style={{
+                    opacity: isActive ? 1 : 0,
+                    visibility: isActive ? 'visible' : 'hidden',
+                    transform: `translateY(${isActive ? '0px' : '10px'})`,
+                    zIndex: isActive ? 10 : 0,
+                  }}
+                >
+                  {/* Domain Title inside the panel */}
+                  <h3
+                    className="mb-8"
+                    style={{
+                      fontSize: 'var(--font-size-title, clamp(1.5rem, 3vw, 2.5rem))',
+                      lineHeight: 'var(--line-height-title, 1.1)',
+                      letterSpacing: 'var(--letter-spacing-title, -0.02em)',
+                      fontWeight: 500,
+                      color: 'var(--portfolio-fg-primary)',
+                    }}
+                  >
+                    {domain.name}
+                  </h3>
+
+                  {/* Items List */}
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
+                    {domain.items.map((item, i) => (
+                      <li
+                        key={item}
+                        className="flex items-center gap-3 transition-all duration-700 ease-out"
+                        style={{
+                          fontSize: 'var(--font-size-body-lg, 1.125rem)',
+                          lineHeight: 'var(--line-height-body, 1.6)',
+                          color: 'var(--portfolio-fg-secondary)',
+                          letterSpacing: '-0.01em',
+                          opacity: isActive ? 1 : 0,
+                          transform: `translateX(${isActive ? '0px' : '-10px'})`,
+                          transitionDelay: isActive ? `${i * 0.05}s` : '0s',
+                        }}
+                      >
+                        <span
+                          className="w-1.5 h-1.5 rounded-full shrink-0"
+                          style={{ backgroundColor: domain.accent, opacity: 0.5 }}
+                        />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Ambient Subtle Glow matching the domain accent */}
+                  <div
+                    className="absolute -right-24 -bottom-24 w-64 h-64 rounded-full blur-[80px] opacity-10 transition-colors duration-1000 -z-10"
+                    style={{ backgroundColor: domain.accent }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </BorderGlow>
       </div>
     </div>
   );
@@ -312,7 +218,7 @@ export function ChapterTechStack() {
         </Headline>
 
         <AnimateOnScroll preset="fadeUp">
-          <EngineeringGallery />
+          <DomainExplorer />
         </AnimateOnScroll>
       </Container>
     </Chapter>

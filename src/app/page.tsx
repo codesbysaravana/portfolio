@@ -1,14 +1,16 @@
 import { ChapterHero } from '@/components/chapters/hero';
 import { ChapterIdentity } from '@/components/chapters/identity';
-import { ChapterJourney } from '@/components/chapters/journey';
-import { ChapterExperience } from '@/components/chapters/experience';
+import { ChapterValue } from '@/components/chapters/value';
+import { AiWorkflowStrip } from '@/components/chapters/ai-workflow';
+import { ChapterEvolution } from '@/components/chapters/evolution';
 import { ChapterTechStack } from '@/components/chapters/techstack';
-import { ChapterPhilosophy } from '@/components/chapters/philosophy';
+//import { ChapterPhilosophy } from '@/components/chapters/philosophy';
 import { ChapterProjects } from '@/components/chapters/projects';
 import { ChapterPrinciples } from '@/components/chapters/principles';
 import { ChapterFuture } from '@/components/chapters/future';
 import { ChapterContact } from '@/components/chapters/contact';
 import { ChapterTransition } from '@/components/layout/chapter-transition';
+import { ChapterTransitionLast } from '@/components/layout/chapter-transition-last';
 
 /**
  * Home Page
@@ -22,14 +24,13 @@ export default function Home() {
       <ChapterHero />
       <ChapterTransition />
       <ChapterIdentity />
+      <ChapterValue />
       <ChapterTransition />
-      <ChapterJourney />
+      <AiWorkflowStrip />
       <ChapterTransition />
-      <ChapterExperience />
+      <ChapterEvolution />
       <ChapterTransition />
       <ChapterTechStack />
-      <ChapterTransition />
-      <ChapterPhilosophy />
       <ChapterTransition />
       <ChapterProjects />
       <ChapterTransition />
@@ -38,6 +39,7 @@ export default function Home() {
       <ChapterFuture />
       <ChapterTransition />
       <ChapterContact />
+      <ChapterTransitionLast />
     </main>
   );
 }
