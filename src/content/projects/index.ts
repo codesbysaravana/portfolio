@@ -40,6 +40,19 @@ export interface ProjectContent {
 
 export const PROJECTS: ProjectContent[] = [
   {
+    slug: 'microps',
+    title: 'Microps',
+    category: 'Open Source',
+    year: '2025',
+    tagline: 'Precision micro-mechanics for modern infrastructure.',
+    description:
+      'An open-source orchestration toolkit for microservice architectures. Microps provides intelligent service mesh routing, real-time dependency visualization, automated health diagnostics, and zero-downtime deployment pipelines. Built for teams managing complex distributed systems at scale.',
+    techStack: ['Nodejs', 'Jenkins', 'AWS EC2', 'AWS S3', 'Docker'],
+    image: '/projects/micropsmain.png',
+    link: 'http://microps-client.s3-website-ap-southeast-2.amazonaws.com/',
+  },
+
+  {
     slug: 'pasumaicholai',
     title: 'PasumaiCholai',
     category: 'Web Application',
@@ -61,18 +74,6 @@ export const PROJECTS: ProjectContent[] = [
       'A comprehensive design system built for scale. Nephele provides a unified visual language across web and mobile platforms, featuring an adaptive component library, automated accessibility auditing, and a living documentation portal. The system reduces design-to-code handoff time by 60% and ensures pixel-perfect consistency across product teams.',
     techStack: ['React', 'Storybook', 'Figma API', 'TypeScript'],
     image: '/projects/nephele.webp',
-    link: '#',
-  },
-  {
-    slug: 'microps',
-    title: 'Microps',
-    category: 'Open Source',
-    year: '2023',
-    tagline: 'Precision micro-mechanics for modern infrastructure.',
-    description:
-      'An open-source orchestration toolkit for microservice architectures. Microps provides intelligent service mesh routing, real-time dependency visualization, automated health diagnostics, and zero-downtime deployment pipelines. Built for teams managing complex distributed systems at scale.',
-    techStack: ['Go', 'Kubernetes', 'gRPC', 'Prometheus', 'React'],
-    image: '/projects/microps.webp',
     link: '#',
   },
 ];
