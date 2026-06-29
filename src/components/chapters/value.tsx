@@ -27,29 +27,29 @@ interface ValueChapter {
 
 const VALUE_CHAPTERS: ValueChapter[] = [
   {
-    statement: ['I build systems,', 'not just features.'],
-    keywords: 'SYSTEMS RELIABILITY OWNERSHIP',
+    statement: ['I align architecture', 'directly with revenue.'],
+    keywords: 'BUSINESS MARGINS LEVERAGE',
     supporting:
-      'Every line of code serves a purpose beyond the ticket. I design for maintainability, scalability, and the engineer who inherits it next.',
+      'I design systems that scale with business growth, not ahead of it. I make pragmatic technical choices that protect profit margins while fully supporting product ambitions.',
   },
   {
-    statement: ['I think in', 'workflows,', 'automation,', 'and scale.'],
-    keywords: 'WORKFLOWS AUTOMATION SCALE',
+    statement: ['I treat the backend as', 'an internal product.'],
+    keywords: 'TEAM MULTIPLIER COLLABORATION',
     supporting:
-      'Manual processes are technical debt. I identify repetitive patterns and replace them with systems that compound value over time.',
+      "An API is only as valuable as a frontend team's ability to consume it. I design predictable, intuitive data contracts, treating the rest of the engineering team as my primary customers.",
   },
   {
-    statement: ['I ship fast,', 'iterate faster.'],
-    keywords: 'DELIVERY EXECUTION IMPACT',
+    statement: ['I subtract complexity', 'to multiply velocity.'],
+    keywords: 'SIMPLICITY VELOCITY PRAGMATISM',
     supporting:
-      'Speed without direction is noise. I combine rapid execution with clear architectural intent to deliver outcomes, not just output.',
+      'Every line of code is a liability. I actively remove unnecessary abstraction and simplify architectures so the product can pivot, scale, and evolve without engineering friction.',
   },
   {
-    statement: ['I own the problem,', 'not just the code.'],
-    keywords: 'OWNERSHIP RESPONSIBILITY OUTCOMES',
+    statement: ['I own the user experience,', 'not just the endpoint.'],
+    keywords: 'PRODUCT PERFORMANCE RETENTION',
     supporting:
-      'Engineering is not isolated. I understand the business context, the user need, and the operational reality behind every technical decision.',
-  },
+      "If the database is slow, the user feels it. I engineer data models and background jobs entirely around how the product needs to feel in the customer's hands: instant and seamless.",
+  }
 ];
 
 function ValueBlock({
