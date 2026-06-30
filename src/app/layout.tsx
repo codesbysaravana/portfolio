@@ -39,11 +39,11 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio",
+  title: "Saravana Priyan C — Backend AI Automation Engineer",
   description: "A premium personal portfolio — crafted with intention.",
   metadataBase: new URL("https://example.com"),
   openGraph: {
-    title: "Portfolio",
+    title: "Saravana Priyan C — Backend AI Automation Engineer",
     description: "A premium personal portfolio — crafted with intention.",
     type: "website",
   },

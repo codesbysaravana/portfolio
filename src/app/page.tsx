@@ -4,7 +4,6 @@ import { ChapterValue } from '@/components/chapters/value';
 import { AiWorkflowStrip } from '@/components/chapters/ai-workflow';
 import { ChapterEvolution } from '@/components/chapters/evolution';
 import { ChapterTechStack } from '@/components/chapters/techstack';
-//import { ChapterPhilosophy } from '@/components/chapters/philosophy';
 import { ChapterProjects } from '@/components/chapters/projects';
 import { ChapterPrinciples } from '@/components/chapters/principles';
 import { ChapterFuture } from '@/components/chapters/future';

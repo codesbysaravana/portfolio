@@ -67,7 +67,7 @@ const EVOLUTION_DATA: EvolutionEntry[] = [
       'Started focusing on infrastructure & DevOps',
     ],
     image:
-      'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1000&auto=format&fit=crop',
+      '/hackathonwinning.jpg',
     color: '#6366f1',
   },
   {
@@ -78,6 +78,7 @@ const EVOLUTION_DATA: EvolutionEntry[] = [
     milestones: [
       'AWS Student Builder Groups Leader',
       'Organized technical events and speaker sessions',
+      'Building MicrOps, an open-source backend automation platform, while leading the AWS Student Builder Group.',
       'Mentored students in cloud technologies',
       'Continued building cloud-native products',
     ],

@@ -30,7 +30,7 @@ export function ChapterContact() {
               fontWeight: 500,
             }}
           >
-            Let&apos;s work together
+            "let's talk about your infrastructure"
           </TextReveal>
 
           {/* Email CTA */}

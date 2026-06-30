@@ -161,7 +161,7 @@ export function ChapterHero() {
             lineHeight: 1,
           }}
         >
-          Backend Platforms Engineer
+          Backend AI Automation Engineer
         </div>
 
         {/* ━━ Nav — top right ━━ */}

@@ -33,10 +33,10 @@ export function ChapterIdentity() {
 
             <div className="flex flex-col gap-6">
               <EditorialText>
-                From cloud-native infrastructure and backend services to AI-powered products, I learn through execution. Every project is an opportunity to solve harder problems, create greater leverage, and push beyond what I knew yesterday.
+                "Engineering should accelerate your business, not constrain it. I build the hidden systems that dictate how fast your team ships, how smoothly your product scales, and how much manual effort is erased by intelligent automation. Instead of writing isolated backend code, I align architecture directly with your business goals
               </EditorialText>
               <EditorialText delay={0.15}>
-                My focus is simple: build useful things, scale them well, and never stop improving the craft.
+                Removing operational bottlenecks so your company can move faster, spend less on maintenance, and focus entirely on the customer"
               </EditorialText>
             </div>
           </div>
