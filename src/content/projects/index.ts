@@ -41,15 +41,25 @@ export interface ProjectContent {
 export const PROJECTS: ProjectContent[] = [
   {
     slug: 'microps',
-    title: 'Microps',
-    category: 'Open Source',
-    year: '2025',
-    tagline: 'Precision micro-mechanics for modern infrastructure.',
+    title: 'MicrOps',
+    category: 'DevOps & Cloud SaaS',
+    year: '2026',
+    tagline: 'Autonomous No-Code Cloud DevOps & Serverless Container Orchestrator.',
     description:
-      'An open-source orchestration toolkit for microservice architectures. Microps provides intelligent service mesh routing, real-time dependency visualization, automated health diagnostics, and zero-downtime deployment pipelines. Built for teams managing complex distributed systems at scale.',
-    techStack: ['Nodejs', 'Jenkins', 'AWS EC2', 'AWS S3', 'Docker'],
-    image: '/projects/micropsmain.png',
-    link: 'http://microps-client.s3-website-ap-southeast-2.amazonaws.com/',
+      'An enterprise No-Code DevOps platform and serverless container orchestrator. Simply paste any Git repository URL to trigger automated AI pre-flight radar scanning, multi-stage Docker buildpack generation via BullMQ worker queues, real-time Server-Sent Events (SSE) telemetry streaming, and zero-downtime serverless container provisioning on AWS ECS Fargate.',
+    techStack: [
+      'TypeScript',
+      'React 18',
+      'Node.js',
+      'AWS ECS Fargate',
+      'AWS ECR',
+      'AWS EC2',
+      'Redis & BullMQ',
+      'Docker',
+    ],
+    image: '/projects/microps.png',
+    link: 'http://microps.in/',
+    github: 'https://github.com/codesbysaravana/Microps',
   },
 
   {
