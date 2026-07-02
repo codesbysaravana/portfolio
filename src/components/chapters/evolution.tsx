@@ -52,7 +52,7 @@ const EVOLUTION_DATA: EvolutionEntry[] = [
       'Deployed projects to production',
     ],
     image:
-      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1000&auto=format&fit=crop',
+      '/saravana_orientation.JPG',
     color: '#10b981',
   },
   {
