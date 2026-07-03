@@ -58,32 +58,40 @@ export const PROJECTS: ProjectContent[] = [
       'Docker',
     ],
     image: '/projects/microps.png',
-    link: 'http://microps.in/',
+    link: 'https://microps.in/',
     github: 'https://github.com/codesbysaravana/Microps',
   },
 
   {
     slug: 'pasumaicholai',
     title: 'PasumaiCholai',
-    category: 'Web Application',
+    category: 'AI-Powered Agricultural Platform',
     year: '2026',
-    tagline: 'AI-powered agricultural intelligence for modern farming.',
+    tagline: 'AI voice assistance and digital services for farmers.',
     description:
-      'Pasumaicholai is an AI-powered agricultural assistant designed to empower farmers with real-time data-driven decision support. By integrating IoT sensors, satellite imagery, and machine learning, the platform provides predictive insights on crop health, irrigation needs, and pest infestations. Its intuitive interface allows farmers to monitor their fields, receive instant alerts, and access tailored recommendations—all through a simple mobile application. By bridging the gap between traditional farming practices and cutting-edge technology, Pasumaicholai aims to enhance crop yields, optimize resource utilization, and promote sustainable agriculture across Tamil Nadu.',
-    techStack: ['Next.js', 'Python', 'TensorFlow', 'IoT', 'PostgreSQL'],
+      'Pasumaicholai is an AI-powered agricultural platform designed to make farming information more accessible through natural language interactions. Farmers can ask questions using voice or text in their preferred language and receive contextual guidance on crops, cultivation practices, government schemes, weather conditions, and agricultural best practices. The platform combines modern AI models with structured agricultural knowledge to deliver reliable, easy-to-understand responses while reducing the digital barrier for rural communities. Built with a scalable backend architecture, Pasumaicholai focuses on improving accessibility, farmer awareness, and informed decision-making through conversational AI.',
+    techStack: [
+      'Next.js',
+      'FastAPI',
+      'Python',
+      'PostgreSQL',
+      'OpenAI',
+      'Tailwind CSS'
+    ],
     image: '/projects/pasumaicholai.webp',
     link: 'https://pasumai-cholai-client.vercel.app/',
   },
   {
     slug: 'nephele',
-    title: 'Nephele',
-    category: 'Design System',
-    year: '2023',
-    tagline: 'Atmospheric architecture for the digital age.',
+    title: 'Nephele AI',
+    category: 'AI Robotics & Orchestration',
+    year: '2026',
+    tagline: 'A futuristic multi-modal AI interviewer and robotic assistant.',
     description:
-      'A comprehensive design system built for scale. Nephele provides a unified visual language across web and mobile platforms, featuring an adaptive component library, automated accessibility auditing, and a living documentation portal. The system reduces design-to-code handoff time by 60% and ensures pixel-perfect consistency across product teams.',
-    techStack: ['React', 'Storybook', 'Figma API', 'TypeScript'],
-    image: '/projects/nephele.webp',
-    link: '#',
-  },
+      'Nephele is a production-grade AI operating interface and robotic orchestrator. It features a real-time computer vision edge pipeline for behavioral telemetry, fused multi-modal data processing, and a low-latency Cognitive Engine. The frontend provides a stunning, framework-less Vanilla JS SPA with adaptive CSS animations and surgical WebSocket state management.',
+    techStack: ['Python', 'FastAPI', 'OpenCV', 'Vanilla JS', 'TailwindCSS', 'WebSockets', 'Groq LLM'],
+    image: '/projects/nephele.png',
+    link: 'http://nephele.frontend.s3-website-ap-southeast-2.amazonaws.com/',
+  }
+
 ];

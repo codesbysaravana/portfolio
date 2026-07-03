@@ -37,7 +37,7 @@ const EVOLUTION_DATA: EvolutionEntry[] = [
       'Built first projects and prototypes',
     ],
     image:
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop',
+      '/ramp.jpeg',
     color: '#f43f5e',
   },
   {
@@ -83,7 +83,7 @@ const EVOLUTION_DATA: EvolutionEntry[] = [
       'Continued building cloud-native products',
     ],
     image:
-      'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000&auto=format&fit=crop',
+      '/saravanareceiption.jpeg',
     color: '#eab308',
   },
 ];
