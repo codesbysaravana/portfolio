@@ -23,6 +23,7 @@ interface EvolutionEntry {
   milestones: string[];
   image: string;
   color: string;
+  objectPosition?: string;
 }
 
 const EVOLUTION_DATA: EvolutionEntry[] = [
@@ -37,7 +38,7 @@ const EVOLUTION_DATA: EvolutionEntry[] = [
       'Built first projects and prototypes',
     ],
     image:
-      '/ramp.jpeg',
+      '/ramp.jpg',
     color: '#f43f5e',
   },
   {
@@ -83,8 +84,9 @@ const EVOLUTION_DATA: EvolutionEntry[] = [
       'Continued building cloud-native products',
     ],
     image:
-      '/saravanareceiption.jpeg',
+      '/saravanareceiption.jpg',
     color: '#eab308',
+    objectPosition: '35% 60%', // Shifted left to show you more centered
   },
 ];
 
@@ -365,6 +367,7 @@ export function ChapterEvolution() {
                     className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out"
                     style={{
                       transform: activeIndex === i ? 'scale(1)' : 'scale(1.06)',
+                      objectPosition: entry.objectPosition || 'center',
                     }}
                   />
                 </div>

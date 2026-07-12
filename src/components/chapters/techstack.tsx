@@ -1,208 +1,130 @@
 'use client';
 
-import { useState } from 'react';
 import { Chapter } from '@/components/layout/chapter';
 import { Container } from '@/components/layout/container';
 import { ChapterOverline } from '@/components/content/chapter-overline';
 import { Headline } from '@/components/content/headline';
 import { AnimateOnScroll } from '@/components/motion/animate-on-scroll';
-import BorderGlow from '@/components/motion/border-glow';
 
-/**
- * Chapter 5 — Engineering Domains
- *
- * A premium, stable, editorial exhibition of engineering capabilities.
- * Split-layout design: list on the left, persistent content panel on the right.
- */
+// Icons
+import { 
+  SiExpress, 
+  SiGithubactions, 
+  SiPostgresql, 
+  SiMongodb, 
+  SiGooglegemini,
+  SiJavascript,
+} from 'react-icons/si';
 
-interface TechCategory {
+import {
+  FaNodeJs,
+  FaAws,
+  FaDocker,
+  FaJenkins,
+  FaLinux,
+  FaJava,
+  FaPython
+} from 'react-icons/fa6';
+
+interface Tech {
   id: string;
   name: string;
-  items: string[];
-  accent: string;
+  type: 'large' | 'medium' | 'small';
+  icon: any;
+  color: string;
+  proficiency: number;
+  label: string;
+  desc: string;
+  span: string;
 }
 
-const DOMAINS: TechCategory[] = [
-  {
-    id: 'backend',
-    name: 'Backend Systems',
-    items: ['Node.js', 'Express.js', 'REST APIs', 'Authentication', 'RBAC', 'API Design'],
-    accent: '#D4AF37', // Warm Gold
-  },
-  {
-    id: 'cloud',
-    name: 'Cloud Infrastructure',
-    items: ['AWS', 'EC2', 'S3', 'Lambda', 'IAM', 'ECR'],
-    accent: '#E6DDBF', // Champagne Gold
-  },
-  {
-    id: 'devops',
-    name: 'DevOps & Automation',
-    items: ['Docker', 'Jenkins', 'GitHub Actions', 'Linux', 'CI/CD Pipelines'],
-    accent: '#C5A861', // Deep Gold
-  },
-  {
-    id: 'databases',
-    name: 'Databases',
-    items: ['PostgreSQL', 'MongoDB', 'DynamoDB'],
-    accent: '#F7E7CE', // Champagne
-  },
-  {
-    id: 'aiml',
-    name: 'AI Applications',
-    items: ['Ollama Models', 'Amazon Bedrock', 'Google Gemini', 'Prompt Engineering'],
-    accent: '#E0BFB8', // Rose Gold
-  },
-  {
-    id: 'languages',
-    name: 'Programming Languages',
-    items: ['Java', 'JavaScript', 'Python', 'SQL'],
-    accent: '#F2E8C6', // Light Ivory
-  },
+const TECH_STACK: Tech[] = [
+  // Large Cards
+  { id: 'java', name: 'Java', type: 'large', icon: FaJava, color: '#F0931C', proficiency: 5, label: 'Expert', desc: 'Primary backend language for scalable APIs and system design.', span: 'col-span-4 md:col-span-2 row-span-2' },
+  { id: 'node', name: 'Node.js', type: 'large', icon: FaNodeJs, color: '#339933', proficiency: 5, label: 'Expert', desc: 'Event-driven runtime for fast, scalable network applications.', span: 'col-span-4 md:col-span-2 row-span-2' },
+  { id: 'aws', name: 'AWS', type: 'large', icon: FaAws, color: '#FF9900', proficiency: 4, label: 'Advanced', desc: 'Cloud infrastructure, deployment, networking, and DevOps.', span: 'col-span-4 md:col-span-2 row-span-2' },
+  
+  // Medium Cards
+  { id: 'docker', name: 'Docker', type: 'medium', icon: FaDocker, color: '#2496ED', proficiency: 4, label: 'Advanced', desc: 'Containerization for consistent environments and deployments.', span: 'col-span-4 md:col-span-2 row-span-1' },
+  { id: 'postgres', name: 'PostgreSQL', type: 'medium', icon: SiPostgresql, color: '#336791', proficiency: 4, label: 'Advanced', desc: 'Robust relational database for complex data architecture.', span: 'col-span-4 md:col-span-2 row-span-1' },
+  { id: 'mongodb', name: 'MongoDB', type: 'medium', icon: SiMongodb, color: '#47A248', proficiency: 3, label: 'Comfortable', desc: 'NoSQL database for flexible, scalable document storage.', span: 'col-span-4 md:col-span-2 row-span-1' },
+  
+  // Small Cards
+  { id: 'express', name: 'Express.js', type: 'small', icon: SiExpress, color: '#ffffff', proficiency: 4, label: 'Advanced', desc: 'Minimalist web framework for Node.js.', span: 'col-span-2 md:col-span-1 row-span-1' },
+  { id: 'jenkins', name: 'Jenkins', type: 'small', icon: FaJenkins, color: '#D24939', proficiency: 3, label: 'Comfortable', desc: 'Automation server for continuous integration.', span: 'col-span-2 md:col-span-1 row-span-1' },
+  { id: 'linux', name: 'Linux', type: 'small', icon: FaLinux, color: '#FCC624', proficiency: 3, label: 'Comfortable', desc: 'System administration and server management.', span: 'col-span-2 md:col-span-1 row-span-1' },
+  { id: 'js', name: 'JavaScript', type: 'small', icon: SiJavascript, color: '#F7DF1E', proficiency: 3, label: 'Comfortable', desc: 'Frontend interactions and full-stack utilities.', span: 'col-span-2 md:col-span-1 row-span-1' },
+  { id: 'python', name: 'Python', type: 'small', icon: FaPython, color: '#3776AB', proficiency: 2, label: 'Familiar', desc: 'Scripting, automation, and AI integrations.', span: 'col-span-4 md:col-span-2 row-span-1' },
 ];
 
-function DomainExplorer() {
-  // First domain is active by default so the panel is never empty
-  const [activeId, setActiveId] = useState<string>(DOMAINS[0].id);
-
+function Proficiency({ rating, label, isSmall }: { rating: number, label: string, isSmall: boolean }) {
   return (
-    <div className="w-full pt-8 pb-16">
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-10 lg:gap-24 items-start">
+    <div className="flex items-center gap-3">
+      <div className="flex text-[0.7rem] md:text-xs tracking-widest">
+        {[1,2,3,4,5].map(i => (
+          <span key={i} className="transition-colors duration-300" style={{ 
+            color: i <= rating ? 'var(--portfolio-fg-primary)' : 'var(--portfolio-fg-tertiary)',
+            opacity: i <= rating ? 1 : 0.25
+          }}>
+            {i <= rating ? '★' : '☆'}
+          </span>
+        ))}
+      </div>
+      <span className={`text-[10px] md:text-xs font-medium uppercase tracking-widest text-[var(--portfolio-fg-tertiary)] ${isSmall ? 'opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75' : ''}`}>
+        {label}
+      </span>
+    </div>
+  );
+}
 
-        {/* Left Side: Navigation List */}
-        <nav
-          className="flex flex-row lg:flex-col flex-wrap gap-2 lg:gap-3"
-          aria-label="Engineering Domains Navigation"
-        >
-          {DOMAINS.map((domain) => {
-            const isActive = activeId === domain.id;
+function BentoCard({ tech, index }: { tech: Tech, index: number }) {
+  const isLarge = tech.type === 'large';
+  const isMedium = tech.type === 'medium';
+  const isSmall = tech.type === 'small';
+  
+  return (
+    <div 
+      className={`group relative flex flex-col justify-between overflow-hidden rounded-[2rem] bg-[var(--portfolio-bg-surface)] border border-[var(--portfolio-border)] transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-2xl ${tech.span}`}
+      style={{
+        animationDelay: `${index * 50}ms`,
+      }}
+    >
+      {/* Soft radial accent */}
+      <div 
+        className="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-[90px] opacity-0 group-hover:opacity-15 transition-opacity duration-700 pointer-events-none"
+        style={{ backgroundColor: tech.color }}
+      />
+      
+      {/* Subtle colored border glow on hover */}
+      <div
+        className="absolute inset-0 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
+        style={{ border: `1px solid ${tech.color}40` }}
+      />
 
-            return (
-              <button
-                key={domain.id}
-                onClick={() => setActiveId(domain.id)}
-                onMouseEnter={() => setActiveId(domain.id)}
-                className="relative text-left px-5 py-4 rounded-xl transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-white/30"
-                style={{
-                  backgroundColor: isActive ? 'rgba(255, 255, 255, 0.03)' : 'transparent',
-                }}
-                aria-pressed={isActive}
-              >
-                {/* Active Indicator Line (Desktop: left, Mobile: bottom or hidden. Using a subtle glow/border instead for luxury feel) */}
-                <span
-                  className="absolute left-0 top-1/2 -translate-y-1/2 w-1 rounded-r-full transition-all duration-500 ease-out hidden lg:block"
-                  style={{
-                    height: isActive ? '60%' : '0%',
-                    backgroundColor: domain.accent,
-                    boxShadow: isActive ? `0 0 12px ${domain.accent}60` : 'none',
-                    opacity: isActive ? 1 : 0,
-                  }}
-                />
-
-                <div className="flex items-center gap-3">
-                  {/* Subtle Dot Indicator */}
-                  <span
-                    className="w-1.5 h-1.5 rounded-full transition-all duration-500"
-                    style={{
-                      backgroundColor: isActive ? domain.accent : 'var(--portfolio-fg-tertiary)',
-                      transform: isActive ? 'scale(1.5)' : 'scale(1)',
-                      boxShadow: isActive ? `0 0 8px ${domain.accent}80` : 'none',
-                      opacity: isActive ? 1 : 0.3,
-                    }}
-                  />
-                  <span
-                    className="font-mono uppercase tracking-[0.1em] whitespace-nowrap transition-all duration-500"
-                    style={{
-                      fontSize: 'var(--font-size-caption, 0.8125rem)',
-                      color: isActive ? domain.accent : 'var(--portfolio-fg-tertiary)',
-                      fontWeight: isActive ? 600 : 400,
-                    }}
-                  >
-                    {domain.name}
-                  </span>
-                </div>
-              </button>
-            );
-          })}
-        </nav>
-
-        {/* Right Side: Persistent Content Panel */}
-        <BorderGlow
-          className="w-full min-h-[350px] lg:min-h-[400px]"
-          edgeSensitivity={20}
-          glowColor="42 55 72"
-          backgroundColor="var(--portfolio-bg-surface)"
-          borderRadius={32}
-          glowRadius={24}
-          glowIntensity={0.25}
-          coneSpread={18}
-          animated={false}
-          colors={['#D4AF37', '#E8D9B5', '#C5A861']}
-        >
-          <div className="relative w-full h-full flex items-center p-8 lg:p-12">
-            {DOMAINS.map((domain) => {
-              const isActive = activeId === domain.id;
-
-              return (
-                <div
-                  key={`panel-${domain.id}`}
-                  className="absolute inset-0 p-8 lg:p-12 flex flex-col justify-center transition-all duration-700 ease-out pointer-events-none"
-                  style={{
-                    opacity: isActive ? 1 : 0,
-                    visibility: isActive ? 'visible' : 'hidden',
-                    transform: `translateY(${isActive ? '0px' : '10px'})`,
-                    zIndex: isActive ? 10 : 0,
-                  }}
-                >
-                  {/* Domain Title inside the panel */}
-                  <h3
-                    className="mb-8"
-                    style={{
-                      fontSize: 'var(--font-size-title, clamp(1.5rem, 3vw, 2.5rem))',
-                      lineHeight: 'var(--line-height-title, 1.1)',
-                      letterSpacing: 'var(--letter-spacing-title, -0.02em)',
-                      fontWeight: 500,
-                      color: 'var(--portfolio-fg-primary)',
-                    }}
-                  >
-                    {domain.name}
-                  </h3>
-
-                  {/* Items List */}
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8">
-                    {domain.items.map((item, i) => (
-                      <li
-                        key={item}
-                        className="flex items-center gap-3 transition-all duration-700 ease-out"
-                        style={{
-                          fontSize: 'var(--font-size-body-lg, 1.125rem)',
-                          lineHeight: 'var(--line-height-body, 1.6)',
-                          color: 'var(--portfolio-fg-secondary)',
-                          letterSpacing: '-0.01em',
-                          opacity: isActive ? 1 : 0,
-                          transform: `translateX(${isActive ? '0px' : '-10px'})`,
-                          transitionDelay: isActive ? `${i * 0.05}s` : '0s',
-                        }}
-                      >
-                        <span
-                          className="w-1.5 h-1.5 rounded-full shrink-0"
-                          style={{ backgroundColor: domain.accent, opacity: 0.5 }}
-                        />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Ambient Subtle Glow matching the domain accent */}
-                  <div
-                    className="absolute -right-24 -bottom-24 w-64 h-64 rounded-full blur-[80px] opacity-10 transition-colors duration-1000 -z-10"
-                    style={{ backgroundColor: domain.accent }}
-                  />
-                </div>
-              );
-            })}
+      <div className={`relative z-10 flex flex-col h-full ${isSmall ? 'p-6' : 'p-8 md:p-10'}`}>
+        <div className="flex-1 flex flex-col">
+          <div className={`flex ${isSmall ? 'flex-col items-start gap-4' : 'flex-row items-center gap-5'} mb-5`}>
+            <tech.icon 
+              className={`${isLarge ? 'w-12 h-12 md:w-16 md:h-16' : isMedium ? 'w-10 h-10 md:w-12 md:h-12' : 'w-8 h-8 md:w-10 md:h-10'} transition-transform duration-700 ease-out group-hover:scale-110`}
+              style={{ color: tech.color }}
+            />
+            <h3 className={`${isLarge ? 'text-2xl md:text-3xl' : isMedium ? 'text-xl md:text-2xl' : 'text-lg md:text-xl'} font-semibold text-[var(--portfolio-fg-primary)] tracking-tight`}>
+              {tech.name}
+            </h3>
           </div>
-        </BorderGlow>
+          
+          <p className={`
+            text-[var(--portfolio-fg-secondary)] 
+            ${isLarge ? 'text-base md:text-lg leading-relaxed max-w-sm mt-2' : isMedium ? 'text-sm md:text-base leading-relaxed mt-1' : 'text-xs md:text-sm leading-relaxed'}
+            ${isSmall ? 'opacity-0 -translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out' : ''}
+          `}>
+            {tech.desc}
+          </p>
+        </div>
+
+        <div className="mt-8">
+          <Proficiency rating={tech.proficiency} label={tech.label} isSmall={isSmall} />
+        </div>
       </div>
     </div>
   );
@@ -211,14 +133,41 @@ function DomainExplorer() {
 export function ChapterTechStack() {
   return (
     <Chapter id="techstack" bg="elevated" label="Engineering Domains">
-      <Container width="wide" className="py-32 md:py-48 relative">
+      {/* Background Enhancements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Faint radial spotlight */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] md:w-[1000px] md:h-[1000px] bg-white/[0.015] blur-[120px] rounded-full" />
+        
+        {/* Extremely soft vignette */}
+        <div className="absolute inset-0 shadow-[inset_0_0_200px_rgba(0,0,0,0.4)] md:shadow-[inset_0_0_300px_rgba(0,0,0,0.6)] mix-blend-multiply" />
+        
+        {/* Subtle noise texture */}
+        <div 
+          className="absolute inset-0 opacity-[0.015] mix-blend-overlay"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
+          }}
+        />
+      </div>
+
+      <Container width="wide" className="py-32 md:py-48 relative z-10">
         <ChapterOverline number={5} />
-        <Headline as="h2" size="headline" className="mb-16 md:mb-24 relative z-10">
-          Engineering Domains
-        </Headline>
+        
+        <div className="mb-16 md:mb-24 max-w-2xl">
+          <Headline as="h2" size="headline" className="mb-6">
+            Tech Stack
+          </Headline>
+          <p className="text-lg md:text-xl text-[var(--portfolio-fg-secondary)] leading-relaxed">
+            The technologies I rely on to design, build, deploy, and scale modern backend systems.
+          </p>
+        </div>
 
         <AnimateOnScroll preset="fadeUp">
-          <DomainExplorer />
+          <div className="grid grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto">
+            {TECH_STACK.map((tech, i) => (
+              <BentoCard key={tech.id} tech={tech} index={i} />
+            ))}
+          </div>
         </AnimateOnScroll>
       </Container>
     </Chapter>
