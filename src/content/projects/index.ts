@@ -79,7 +79,7 @@ export const PROJECTS: ProjectContent[] = [
       'Tailwind CSS'
     ],
     image: '/projects/pasumaicholai.webp',
-    link: 'https://pasumai-cholai-client.vercel.app/',
+    link: 'https://pasumaicholai.vercel.app/',
   },
   {
     slug: 'nephele',
