@@ -78,7 +78,7 @@ export const PROJECTS: ProjectContent[] = [
       'OpenAI',
       'Tailwind CSS'
     ],
-    image: '/projects/pasumaicholai.webp',
+    image: '/projects/pasumaicholai.png',
     link: 'https://pasumaicholai.vercel.app/',
   },
   {
