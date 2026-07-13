@@ -305,7 +305,7 @@ function TechPill({ label }: { label: string }) {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 const ARCHITECTURE_FLOWS: Record<string, string[]> = {
-  pasumaicholai: ['User', 'Frontend', 'Backend', 'ML Engine', 'Database', 'Insights'],
+  pasumaicholai: ['Farmer', 'React App', 'Node Gateway', 'FastAPI Engine', 'OpenAI', 'MongoDB'],
   nephele: ['User', 'Interface Layer', 'Interaction Engine', 'AI Services', 'Response Layer'],
   microps: ['Frontend', 'API Layer', 'Workflow Engine', 'Queue System', 'Workers', 'Cloud Services'],
 };
@@ -957,12 +957,15 @@ function ProjectSpread({
               </p>
             </div>
 
-            {/* Tech pills */}
+            {/* Tech pills & Architecture */}
             <div ref={techRef} className="will-change-[opacity,transform] opacity-0">
-              <div className="flex flex-wrap gap-2 mt-5">
+              <div className="flex flex-wrap gap-2 mt-5 mb-8">
                 {project.techStack.map((tech) => (
                   <TechPill key={tech} label={tech} />
                 ))}
+              </div>
+              <div className="hidden lg:block">
+                <ArchitectureDiagram slug={project.slug} />
               </div>
             </div>
           </div>

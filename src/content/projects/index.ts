@@ -71,15 +71,17 @@ export const PROJECTS: ProjectContent[] = [
     description:
       'Pasumaicholai is an AI-powered agricultural platform designed to make farming information more accessible through natural language interactions. Farmers can ask questions using voice or text in their preferred language and receive contextual guidance on crops, cultivation practices, government schemes, weather conditions, and agricultural best practices. The platform combines modern AI models with structured agricultural knowledge to deliver reliable, easy-to-understand responses while reducing the digital barrier for rural communities. Built with a scalable backend architecture, Pasumaicholai focuses on improving accessibility, farmer awareness, and informed decision-making through conversational AI.',
     techStack: [
-      'Next.js',
+      'React',
+      'Node.js & Express',
       'FastAPI',
-      'Python',
-      'PostgreSQL',
+      'MongoDB',
       'OpenAI',
+      'Twilio',
       'Tailwind CSS'
     ],
     image: '/projects/pasumaicholai.png',
     link: 'https://pasumaicholai.vercel.app/',
+    github: 'https://github.com/codesbysaravana/pasumaicholai',
   },
   {
     slug: 'nephele',
