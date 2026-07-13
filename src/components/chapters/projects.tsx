@@ -964,9 +964,6 @@ function ProjectSpread({
                   <TechPill key={tech} label={tech} />
                 ))}
               </div>
-              <div className="hidden lg:block">
-                <ArchitectureDiagram slug={project.slug} />
-              </div>
             </div>
           </div>
 
