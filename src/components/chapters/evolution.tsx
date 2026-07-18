@@ -6,6 +6,7 @@ import { Container } from '@/components/layout/container';
 import { ChapterOverline } from '@/components/content/chapter-overline';
 import { Headline } from '@/components/content/headline';
 import { AnimateOnScroll } from '@/components/motion/animate-on-scroll';
+import Image from 'next/image';
 
 /**
  * Chapter — The Evolution
@@ -361,10 +362,12 @@ export function ChapterEvolution() {
                   {/* Subtle cinematic overlay */}
                   <div className="absolute inset-0 bg-black/10 z-10 mix-blend-overlay" />
 
-                  <img
+                  <Image
                     src={entry.image}
                     alt={entry.title}
-                    className="w-full h-full object-cover transition-transform duration-[2000ms] ease-out"
+                    fill
+                    sizes="(max-width: 1024px) 0vw, 50vw"
+                    className="object-cover transition-transform duration-[2000ms] ease-out"
                     style={{
                       transform: activeIndex === i ? 'scale(1)' : 'scale(1.06)',
                       objectPosition: entry.objectPosition || 'center',
