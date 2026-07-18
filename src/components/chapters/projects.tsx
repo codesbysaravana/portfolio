@@ -307,7 +307,7 @@ function TechPill({ label }: { label: string }) {
 const ARCHITECTURE_FLOWS: Record<string, string[]> = {
   pasumaicholai: ['Farmer', 'React App', 'Node Gateway', 'FastAPI Engine', 'OpenAI', 'MongoDB'],
   nephele: ['User', 'Interface Layer', 'Interaction Engine', 'AI Services', 'Response Layer'],
-  microps: ['Frontend', 'API Layer', 'Workflow Engine', 'Queue System', 'Workers', 'Cloud Services'],
+  microps: ['User', 'React SPA', 'Express API', 'BullMQ Workers', 'GitHub Actions', 'ECS Fargate'],
 };
 
 /** Minimal horizontal architecture flow diagram — SVG-based */

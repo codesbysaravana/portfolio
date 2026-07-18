@@ -24,4 +24,4 @@ export const BG_MAP = {
   primary:  'var(--portfolio-bg-primary)',
   elevated: 'var(--portfolio-bg-elevated)',
   surface:  'var(--portfolio-bg-surface)',
-} as const;
+} as const; 
