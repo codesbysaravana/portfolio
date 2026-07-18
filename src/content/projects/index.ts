@@ -59,7 +59,7 @@ export const PROJECTS: ProjectContent[] = [
     ],
     image: '/projects/microps.png',
     link: 'https://microps.in/',
-    github: 'https://github.com/codesbysaravana/Microps',
+    github: 'https://github.com/codesbysaravana/microps',
   },
 
   {
@@ -93,8 +93,8 @@ export const PROJECTS: ProjectContent[] = [
       'Nephele is a production-grade AI operating interface and robotic orchestrator. It features a real-time computer vision edge pipeline for behavioral telemetry, fused multi-modal data processing, and a low-latency Cognitive Engine. The frontend provides a stunning, framework-less Vanilla JS SPA with adaptive CSS animations and surgical WebSocket state management.',
     techStack: ['Python', 'FastAPI', 'OpenCV', 'Vanilla JS', 'TailwindCSS', 'WebSockets', 'Groq LLM'],
     image: '/projects/nephele.png',
-    link: 'https://nephele.vercel.app/',
-    github: 'https://github.com/codesbysaravana/nephele',
+    link: 'https://nephelelanding.vercel.app/',
+    github: 'https://github.com/codesbysaravana/nephele_production',
   }
 
 ];
