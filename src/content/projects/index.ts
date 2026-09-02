@@ -94,6 +94,7 @@ export const PROJECTS: ProjectContent[] = [
     techStack: ['Python', 'FastAPI', 'OpenCV', 'Vanilla JS', 'TailwindCSS', 'WebSockets', 'Groq LLM'],
     image: '/projects/nephele.png',
     link: 'https://nephelelanding.vercel.app/',
+    video: 'https://www.youtube.com/embed/rm_tdCiRECc?start=30',
     github: 'https://github.com/codesbysaravana/nephele_production',
   }
 

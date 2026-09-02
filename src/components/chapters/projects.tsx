@@ -637,7 +637,19 @@ function ProjectLightbox({
           >
             <BrowserChrome title={project.title} />
 
-            {hasLiveUrl ? (
+            {project.video ? (
+              /* YouTube / video embed — takes priority when set */
+              <div className="relative w-full overflow-hidden" style={{ height: 'clamp(400px, 70vh, 800px)' }}>
+                <iframe
+                  src={project.video}
+                  title={`${project.title} video preview`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              </div>
+            ) : hasLiveUrl ? (
               /* Live iframe — actual deployed application */
               <div
                 className="relative w-full overflow-hidden"
@@ -655,21 +667,8 @@ function ProjectLightbox({
                   style={{ backgroundColor: '#ffffff' }}
                 />
               </div>
-            ) : project.video ? (
-              /* Video fallback when no live URL */
-              <div className="aspect-[16/9] overflow-hidden">
-                <video
-                  src={project.video}
-                  poster={project.image}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  aria-label={`${project.title} product preview`}
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
             ) : (
+
               /* Image fallback */
               <div className="aspect-[16/9] overflow-hidden">
                 <img
