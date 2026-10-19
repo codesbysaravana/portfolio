@@ -62,7 +62,7 @@ export const PROJECTS: ProjectContent[] = [
       'GitHub Actions',
     ],
     image: '/projects/microps.png',
-    link: 'https://microps.in/',
+    link: 'https://microps-development.vercel.app/',
     github: 'https://github.com/codesbysaravana/microps',
   },
   {
@@ -75,7 +75,7 @@ export const PROJECTS: ProjectContent[] = [
       "I built the code-execution engine behind CodePro, an online judge used for placement practice at St Joseph's, Chennai. It runs in production from my repo's main branch.",
     techStack: ['Judge0', 'BullMQ', 'Redis', 'Node.js'],
     image: '/projects/codepro.png',
-    disableIframe: true,
+    link: 'https://codepro-green.vercel.app/',
     grafanaLink: 'https://grafana.stjosephsplacements.in/public-dashboards/b65e72b16769417c803e9001efa06da8',
     github: 'https://github.com/codesbysaravana/codepro',
   },

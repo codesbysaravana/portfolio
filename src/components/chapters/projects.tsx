@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
+import { LiveProjectPreview } from '@/components/content/live-project-preview';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
 import { Chapter } from '@/components/layout/chapter';
@@ -668,23 +669,7 @@ function ProjectLightbox({
                 />
               </div>
             ) : (hasLiveUrl && !project.disableIframe) ? (
-              /* Live iframe — actual deployed application */
-              <div
-                className="relative w-full overflow-hidden"
-                style={{
-                  height: 'clamp(400px, 70vh, 800px)',
-                  backgroundColor: 'oklch(0.12 0 0)',
-                }}
-              >
-                <iframe
-                  src={project.link}
-                  title={`${project.title} — Live Product Preview`}
-                  sandbox="allow-scripts allow-same-origin allow-popups"
-                  loading="lazy"
-                  className="w-full h-full border-0"
-                  style={{ backgroundColor: '#ffffff' }}
-                />
-              </div>
+              <LiveProjectPreview project={project} />
             ) : (
 
               /* Image fallback */
@@ -1005,7 +990,11 @@ function ProjectSpread({
         {/* ── Row 3: Widescreen Product Image ── */}
         <div ref={imageContainerRef} className="will-change-transform">
           <div ref={imageRevealRef} className="will-change-[clip-path,transform]" style={{ clipPath: 'inset(0 100% 0 0)' }}>
-            <ProjectImage project={project} onActivate={handleActivate} />
+            {project.link && !project.video && !project.disableIframe ? (
+              <LiveProjectPreview project={project} />
+            ) : (
+              <ProjectImage project={project} onActivate={handleActivate} />
+            )}
           </div>
         </div>
 
@@ -1051,6 +1040,15 @@ function ProjectSpread({
           <div className="lg:col-span-5 lg:col-start-8 flex items-end lg:justify-end gap-4">
             <div ref={actionsRef} className="will-change-[opacity,transform] opacity-0">
               <div className="flex flex-wrap gap-4 items-center">
+                {project.link && !project.video && !project.disableIframe && (
+                  <button
+                    type="button"
+                    onClick={handleActivate}
+                    className="inline-flex min-h-11 items-center font-mono text-xs uppercase underline underline-offset-4 text-[var(--portfolio-fg-secondary)] hover:text-[var(--portfolio-accent)]"
+                  >
+                    Details &amp; architecture
+                  </button>
+                )}
                 {project.link && (
                   <a
                     href={project.link}
@@ -1085,7 +1083,7 @@ function ProjectSpread({
                     href={project.grafanaLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg font-mono uppercase tracking-wider text-xs transition-all duration-300 hover:scale-105"
+                    className="group inline-flex min-h-11 items-center gap-2 px-4 py-2 rounded-lg font-mono uppercase tracking-wider text-xs transition-all duration-300 hover:scale-105"
                     style={{
                       backgroundColor: 'var(--portfolio-fg-primary)',
                       color: 'var(--portfolio-bg-deep)',
