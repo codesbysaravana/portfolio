@@ -63,7 +63,7 @@ const EVOLUTION_DATA: EvolutionEntry[] = [
     description:
       'My focus shifted beneath the application layer. I became fascinated by cloud architecture, containers, CI/CD pipelines, Kubernetes, infrastructure automation, and distributed systems. This was also the year I won an AI & Cloud Hackathon and began building products that combined Backend Engineering, Cloud Computing, DevOps, and AI.',
     milestones: [
-      'Frontend Developer Intern — Dexwox Innovations',
+      'API Engineer - Dexwox Innovations',
       '1st Place — AI & Cloud Hackathon (60+ teams)',
       'Built cloud-native systems on AWS',
       'Started focusing on infrastructure & DevOps',

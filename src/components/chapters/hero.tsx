@@ -21,6 +21,8 @@ import { useReducedMotion } from '@/hooks/use-reduced-motion';
 
 const NAV_LINKS = [
   { label: 'Work', href: '#projects' },
+  { label: 'Open Source', href: '#open-source' },
+  { label: 'Writing', href: '#writing' },
   { label: 'About', href: '#identity' },
   { label: 'Principles', href: '#principles' },
   { label: 'Contact', href: '#contact' },
@@ -167,13 +169,9 @@ export function ChapterHero() {
         {/* ━━ Nav — top right ━━ */}
         <nav
           ref={navRef}
+          aria-label="Main navigation"
+          className="absolute top-28 left-6 right-6 z-10 flex flex-wrap gap-x-6 gap-y-3 md:top-24 md:left-auto md:right-12 2xl:top-12"
           style={{
-            position: 'absolute',
-            top: 48,
-            right: 48,
-            zIndex: 10,
-            display: 'flex',
-            gap: '2rem',
             fontFamily: 'var(--font-inter), sans-serif',
             fontSize: '0.875rem',
             letterSpacing: '0.08em',

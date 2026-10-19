@@ -72,7 +72,7 @@ export const PROJECTS: ProjectContent[] = [
     year: '2026',
     tagline: "Production code-execution engine powering placement practice at St Joseph's, Chennai.",
     description:
-      "I built the code-execution engine behind CodePro, an online judge used for placement practice at St Joseph's, Chennai. It runs in production from my repo's main branch.",
+      "I built CodePro's code-execution engine, deployed at St Joseph's, Chennai as AetherCode. It runs in production from my repo's main branch. As of 19 October 2026, the AetherCode dashboard shows 41,350 all-time judge runs, 16,220 all-time submissions and 814 registered students.",
     techStack: ['Judge0', 'BullMQ', 'Redis', 'Node.js'],
     image: '/projects/codepro.png',
     link: 'https://codepro-green.vercel.app/',

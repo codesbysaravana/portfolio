@@ -24,7 +24,7 @@ interface ExperienceEntry {
 const EXPERIENCE_DATA: ExperienceEntry[] = [
   {
     year: '2025',
-    title: 'Frontend Developer Intern',
+    title: 'API Engineer',
     organization: 'Dexwox Innovations',
     bullets: [
       'Built and maintained React-based interfaces',

@@ -206,10 +206,10 @@ function ProjectImage({
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
             className="absolute top-12 right-4 z-20 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-[10px] uppercase tracking-wider bg-black/85 text-[var(--portfolio-fg-primary)] border border-white/20 hover:border-[var(--portfolio-accent)] hover:text-[var(--portfolio-accent)] transition-all shadow-xl backdrop-blur-md"
-            title="Open Grafana Dashboard in new tab"
+            title="Open AetherCode metrics in Grafana in new tab"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Open Grafana</span>
+            <span>AetherCode metrics</span>
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M7 17L17 7" />
               <path d="M7 7h10v10" />
@@ -707,7 +707,7 @@ function ProjectLightbox({
                     rel="noopener noreferrer"
                     className="absolute bottom-4 right-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-lg font-mono text-xs uppercase tracking-wider bg-black/85 text-white backdrop-blur-md border border-white/20 hover:border-[var(--portfolio-accent)] hover:text-[var(--portfolio-accent)] transition-all shadow-xl z-10"
                   >
-                    <span>Open Grafana</span>
+                    <span>AetherCode metrics</span>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M7 17L17 7" />
                       <path d="M7 7h10v10" />
@@ -764,7 +764,7 @@ function ProjectLightbox({
                   color: 'var(--portfolio-bg-deep)',
                 }}
               >
-                <span>Open Grafana</span>
+                <span>AetherCode metrics</span>
                 <svg
                   width="14"
                   height="14"
@@ -1017,7 +1017,7 @@ function ProjectSpread({
                   ...styles.description,
                   color: 'var(--portfolio-fg-tertiary)',
                   display: '-webkit-box',
-                  WebkitLineClamp: 3,
+                  WebkitLineClamp: project.slug === 'codepro' ? 'unset' : 3,
                   WebkitBoxOrient: 'vertical',
                   overflow: 'hidden',
                 }}
@@ -1090,7 +1090,7 @@ function ProjectSpread({
                       fontWeight: 600,
                     }}
                   >
-                    <span>Open Grafana</span>
+                    <span>AetherCode metrics</span>
                     <svg
                       width="13"
                       height="13"
