@@ -2,14 +2,12 @@
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import Image from 'next/image';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Chapter } from '@/components/layout/chapter';
 import { ChapterOverline } from '@/components/content/chapter-overline';
 import { Headline } from '@/components/content/headline';
-import { MaskReveal } from '@/components/motion/mask-reveal';
-import { AnimateOnScroll } from '@/components/motion/animate-on-scroll';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { PROJECTS, type ProjectContent } from '@/content/projects';
 
@@ -233,11 +231,12 @@ function ProjectImage({
               className="w-full h-full object-cover object-top will-change-transform transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             />
           ) : (
-            <img
+            <Image
               src={project.image}
               alt={`${project.title} application dashboard`}
-              className="w-full h-full object-cover object-top will-change-transform transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-              loading="lazy"
+              fill
+              sizes="(max-width: 768px) 100vw, 80vw"
+              className="object-cover object-top will-change-transform transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             />
           )}
 
@@ -698,18 +697,22 @@ function ProjectLightbox({
                     className="block w-full h-full cursor-pointer"
                     title="Open Live Link"
                   >
-                    <img
+                    <Image
                       src={project.image}
                       alt={`${project.title} application preview`}
-                      className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover/preview:scale-[1.02]"
+                      fill
+                      sizes="100vw"
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover/preview:scale-[1.02]"
                     />
                     <div className="absolute inset-0 bg-black/0 group-hover/preview:bg-black/20 transition-colors duration-300 pointer-events-none" />
                   </a>
                 ) : (
-                  <img
+                  <Image
                     src={project.image}
                     alt={`${project.title} application preview`}
-                    className="w-full h-full object-cover object-top"
+                    fill
+                    sizes="100vw"
+                    className="object-cover object-top"
                   />
                 )}
                 {project.grafanaLink && (

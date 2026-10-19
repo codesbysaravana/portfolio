@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
 import { cn } from '@/lib/utils';
 import { CHAPTERS } from '@/types/chapter';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';

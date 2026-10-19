@@ -28,7 +28,6 @@ export function ProjectSpread({
   image,
   link,
   className,
-  index,
 }: ProjectSpreadProps) {
   const spreadRef = useRef<HTMLDivElement>(null);
   const imageRevealRef = useRef<HTMLDivElement>(null);

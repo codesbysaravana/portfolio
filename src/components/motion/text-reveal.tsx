@@ -1,5 +1,7 @@
 'use client';
 
+import type React from 'react';
+
 import { useTextReveal } from '@/hooks/use-text-reveal';
 import { cn } from '@/lib/utils';
 import type { TextRevealProps } from '@/types/motion';
@@ -12,7 +14,7 @@ import type { TextRevealProps } from '@/types/motion';
  */
 export function TextReveal({
   children,
-  as: Tag = 'h2',
+  as: TagProp = 'h2',
   className,
   style,
   delay = 0,
@@ -25,8 +27,12 @@ export function TextReveal({
     splitType,
   });
 
+  // ElementType accepts the ref prop loosely; all supported tags are
+  // intrinsic elements that take an HTMLElement ref.
+  const Tag = TagProp as React.ElementType;
+
   return (
-    <Tag ref={ref as any} className={cn(className)} style={style}>
+    <Tag ref={ref} className={cn(className)} style={style}>
       {children}
     </Tag>
   );

@@ -25,7 +25,7 @@ export function ChapterIdentity() {
           {/* Left — Text */}
           <div>
             <Headline as="h2" size="headline" className="mb-10">
-              I don't chase trends.
+              I don’t chase trends.
               <br className="block lg:hidden" />
 
 
@@ -33,10 +33,10 @@ export function ChapterIdentity() {
 
             <div className="flex flex-col gap-6">
               <EditorialText>
-                "Engineering should accelerate your business, not constrain it. I build the hidden systems that dictate how fast your team ships, how smoothly your product scales, and how much manual effort is erased by intelligent automation. Instead of writing isolated backend code, I align architecture directly with your business goals
+                “Engineering should accelerate your business, not constrain it. I build the hidden systems that dictate how fast your team ships, how smoothly your product scales, and how much manual effort is erased by intelligent automation. Instead of writing isolated backend code, I align architecture directly with your business goals
               </EditorialText>
               <EditorialText delay={0.15}>
-                Removing operational bottlenecks so your company can move faster, spend less on maintenance, and focus entirely on the customer"
+                Removing operational bottlenecks so your company can move faster, spend less on maintenance, and focus entirely on the customer”
               </EditorialText>
             </div>
           </div>

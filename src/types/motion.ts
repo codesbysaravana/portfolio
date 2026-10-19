@@ -1,5 +1,3 @@
-import type { gsap } from 'gsap';
-
 // ━━ Animation Preset Types ━━
 
 export interface AnimationFrom {

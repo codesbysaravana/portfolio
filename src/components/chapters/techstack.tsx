@@ -9,10 +9,8 @@ import { AnimateOnScroll } from '@/components/motion/animate-on-scroll';
 // Icons
 import { 
   SiExpress, 
-  SiGithubactions, 
   SiPostgresql, 
   SiMongodb, 
-  SiGooglegemini,
   SiJavascript,
 } from 'react-icons/si';
 
@@ -25,12 +23,13 @@ import {
   FaJava,
   FaPython
 } from 'react-icons/fa6';
+import type { IconType } from 'react-icons';
 
 interface Tech {
   id: string;
   name: string;
   type: 'large' | 'medium' | 'small';
-  icon: any;
+  icon: IconType;
   color: string;
   tag: string;
   desc: string;

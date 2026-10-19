@@ -6,6 +6,7 @@ import { Container } from '@/components/layout/container';
 import { ChapterOverline } from '@/components/content/chapter-overline';
 import { Headline } from '@/components/content/headline';
 import { TimelineNode } from '@/components/content/timeline-node';
+import Image from 'next/image';
 
 /**
  * Chapter 3 — Journey
@@ -113,10 +114,12 @@ export function ChapterJourney() {
                   {/* Subtle cinematic overlay */}
                   <div className="absolute inset-0 bg-black/10 z-10 mix-blend-overlay" />
 
-                  <img
+                  <Image
                     src={node.image}
                     alt={node.title}
-                    className={`w-full h-full object-cover transition-transform duration-[2000ms] ease-out ${
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className={`object-cover transition-transform duration-[2000ms] ease-out ${
                       activeIndex === i ? 'scale-100' : 'scale-110'
                     }`}
                   />

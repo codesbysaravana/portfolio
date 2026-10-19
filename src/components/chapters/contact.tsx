@@ -6,7 +6,7 @@ import { TextReveal } from '@/components/motion/text-reveal';
 import { AnimateOnScroll } from '@/components/motion/animate-on-scroll';
 import { StaggerGroup } from '@/components/motion/stagger-group';
 import { SocialLink } from '@/components/content/social-link';
-import { ExternalLink, Mail, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, Mail } from 'lucide-react';
 
 /**
  * Chapter 11 — Contact
@@ -30,7 +30,7 @@ export function ChapterContact() {
               fontWeight: 500,
             }}
           >
-            "let's talk about your infrastructure"
+            “let’s talk about your infrastructure”
           </TextReveal>
 
           {/* Email CTA */}

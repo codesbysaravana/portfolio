@@ -3,7 +3,6 @@
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PRESETS } from '@/lib/motion/presets';
 import { SCROLL_DEFAULTS, STAGGER } from '@/lib/motion/constants';
 import { useReducedMotion } from './use-reduced-motion';

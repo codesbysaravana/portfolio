@@ -268,6 +268,7 @@ export const LogoLoop = memo(function LogoLoop({
           {item.node}
         </span>
       ) : (
+        // eslint-disable-next-line @next/next/no-img-element -- vendored loop: width/height come from item data (may be non-numeric), next/image requires numeric dims
         <img
           src={item.src}
           srcSet={item.srcSet}

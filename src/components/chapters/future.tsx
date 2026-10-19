@@ -53,7 +53,7 @@ export function ChapterFuture() {
                 lineHeight: 'var(--line-height-body-lg)',
               }}
             >
-              I'm looking for backend or DevOps roles at early-stage startups, and for businesses that need their deployment and operational workflows automated. If that's you, the contact below goes straight to me.
+              I’m looking for backend or DevOps roles at early-stage startups, and for businesses that need their deployment and operational workflows automated. If that’s you, the contact below goes straight to me.
             </p>
           </AnimateOnScroll>
         </Container>
