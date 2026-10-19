@@ -7,7 +7,7 @@ import { Headline } from '@/components/content/headline';
 import { PrincipleCard } from '@/components/content/principle-card';
 
 /**
- * Chapter 6 — Principles
+ * Chapter 9 — Principles
  *
  * Core beliefs, condensed. Short, memorable.
  * 2-column grid on desktop, single column on mobile.
@@ -40,7 +40,7 @@ export function ChapterPrinciples() {
   return (
     <Chapter id="principles" bg="primary" label="Principles">
       <Container width="wide" className="py-32 md:py-48">
-        <ChapterOverline number={8} />
+        <ChapterOverline number={9} />
         <Headline as="h2" size="headline" className="mb-16 md:mb-24">
           Principles
         </Headline>

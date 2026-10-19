@@ -14,7 +14,7 @@ import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { PROJECTS, type ProjectContent } from '@/content/projects';
 
 /**
- * Chapter 5 — Projects
+ * Chapter 6 — Selected Work (Projects)
  *
  * Premium product showcase. Each project is a full-viewport cinematic spread.
  * Widescreen dashboard previews. Interactive hover effects. Fullscreen lightbox.
@@ -94,7 +94,7 @@ function BrowserChrome({ title }: { title: string }) {
           letterSpacing: '0.02em',
         }}
       >
-        {title.toLowerCase()}.app
+        {`${title.toLowerCase()}.app`}
       </div>
       <div className="w-14" />
     </div>
@@ -198,6 +198,25 @@ function ProjectImage({
       >
         {/* Browser chrome */}
         <BrowserChrome title={project.title} />
+
+        {/* Direct Open Grafana badge button on card screenshot */}
+        {project.grafanaLink && (
+          <a
+            href={project.grafanaLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="absolute top-12 right-4 z-20 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-mono text-[10px] uppercase tracking-wider bg-black/85 text-[var(--portfolio-fg-primary)] border border-white/20 hover:border-[var(--portfolio-accent)] hover:text-[var(--portfolio-accent)] transition-all shadow-xl backdrop-blur-md"
+            title="Open Grafana Dashboard in new tab"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Open Grafana</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M7 17L17 7" />
+              <path d="M7 7h10v10" />
+            </svg>
+          </a>
+        )}
 
         {/* Preview — video with image fallback */}
         <div className="relative aspect-[16/9] overflow-hidden">
@@ -305,7 +324,7 @@ function TechPill({ label }: { label: string }) {
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 const ARCHITECTURE_FLOWS: Record<string, string[]> = {
-  pasumaicholai: ['Farmer', 'React App', 'Node Gateway', 'FastAPI Engine', 'OpenAI', 'MongoDB'],
+  codepro: ['Monaco Client', 'Express API', 'BullMQ & Redis', 'Worker Service', 'Judge0 Sandbox'],
   nephele: ['User', 'Interface Layer', 'Interaction Engine', 'AI Services', 'Response Layer'],
   microps: ['User', 'React SPA', 'Express API', 'BullMQ Workers', 'GitHub Actions', 'ECS Fargate'],
 };
@@ -649,7 +668,7 @@ function ProjectLightbox({
                   className="w-full h-full"
                 />
               </div>
-            ) : hasLiveUrl ? (
+            ) : (hasLiveUrl && !project.disableIframe) ? (
               /* Live iframe — actual deployed application */
               <div
                 className="relative w-full overflow-hidden"
@@ -670,12 +689,43 @@ function ProjectLightbox({
             ) : (
 
               /* Image fallback */
-              <div className="aspect-[16/9] overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={`${project.title} application preview`}
-                  className="w-full h-full object-cover object-top"
-                />
+              <div className="relative aspect-[16/9] overflow-hidden group/preview">
+                {project.link ? (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full h-full cursor-pointer"
+                    title="Open Live Link"
+                  >
+                    <img
+                      src={project.image}
+                      alt={`${project.title} application preview`}
+                      className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover/preview:scale-[1.02]"
+                    />
+                    <div className="absolute inset-0 bg-black/0 group-hover/preview:bg-black/20 transition-colors duration-300 pointer-events-none" />
+                  </a>
+                ) : (
+                  <img
+                    src={project.image}
+                    alt={`${project.title} application preview`}
+                    className="w-full h-full object-cover object-top"
+                  />
+                )}
+                {project.grafanaLink && (
+                  <a
+                    href={project.grafanaLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute bottom-4 right-4 inline-flex items-center gap-2 px-4 py-2.5 rounded-lg font-mono text-xs uppercase tracking-wider bg-black/85 text-white backdrop-blur-md border border-white/20 hover:border-[var(--portfolio-accent)] hover:text-[var(--portfolio-accent)] transition-all shadow-xl z-10"
+                  >
+                    <span>Open Grafana</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
+                    </svg>
+                  </a>
+                )}
               </div>
             )}
           </div>
@@ -699,6 +749,34 @@ function ProjectLightbox({
                 }}
               >
                 <span>Launch App</span>
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                >
+                  <path d="M7 17L17 7" />
+                  <path d="M7 7h10v10" />
+                </svg>
+              </a>
+            )}
+            {project.grafanaLink && (
+              <a
+                href={project.grafanaLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 px-6 py-3 rounded-lg font-mono uppercase tracking-wider text-xs transition-all duration-300 hover:gap-4"
+                style={{
+                  backgroundColor: 'var(--portfolio-fg-primary)',
+                  color: 'var(--portfolio-bg-deep)',
+                }}
+              >
+                <span>Open Grafana</span>
                 <svg
                   width="14"
                   height="14"
@@ -969,7 +1047,7 @@ function ProjectSpread({
           {/* Actions */}
           <div className="lg:col-span-5 lg:col-start-8 flex items-end lg:justify-end gap-4">
             <div ref={actionsRef} className="will-change-[opacity,transform] opacity-0">
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-4 items-center">
                 {project.link && (
                   <a
                     href={project.link}
@@ -997,6 +1075,64 @@ function ProjectSpread({
                       <path d="M7 7h10v10" />
                     </svg>
                     <span className="absolute left-0 -bottom-1.5 h-px w-full bg-[var(--portfolio-accent)] origin-left transition-transform duration-300 group-hover:scale-x-110" />
+                  </a>
+                )}
+                {project.grafanaLink && (
+                  <a
+                    href={project.grafanaLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2 px-4 py-2 rounded-lg font-mono uppercase tracking-wider text-xs transition-all duration-300 hover:scale-105"
+                    style={{
+                      backgroundColor: 'var(--portfolio-fg-primary)',
+                      color: 'var(--portfolio-bg-deep)',
+                      fontWeight: 600,
+                    }}
+                  >
+                    <span>Open Grafana</span>
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    >
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
+                    </svg>
+                  </a>
+                )}
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative inline-flex items-center gap-2 uppercase font-mono transition-colors hover:text-[var(--portfolio-accent)]"
+                    style={{
+                      ...styles.cta,
+                      color: 'var(--portfolio-fg-secondary)',
+                    }}
+                  >
+                    <span>GitHub</span>
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    >
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
+                    </svg>
+                    <span className="absolute left-0 -bottom-1.5 h-px w-full bg-[var(--portfolio-border-hover)] origin-left transition-transform duration-300 group-hover:scale-x-110" />
                   </a>
                 )}
                 {project.caseStudyLink && (
@@ -1086,7 +1222,7 @@ export function ChapterProjects() {
     <Chapter id="projects" bg="deep" label="Projects" flush>
       {/* Section introduction — within standard padding */}
       <div className="px-6 md:px-12 lg:px-24 pt-32 md:pt-48">
-        <ChapterOverline number={7} />
+        <ChapterOverline number={6} />
         <Headline as="h2" size="headline" className="mb-0">
           Selected Work
         </Headline>

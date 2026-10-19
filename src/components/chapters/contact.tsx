@@ -9,7 +9,7 @@ import { SocialLink } from '@/components/content/social-link';
 import { ExternalLink, Mail, ArrowUpRight } from 'lucide-react';
 
 /**
- * Chapter 8 — Contact
+ * Chapter 11 — Contact
  *
  * Clear, confident call to action. End the experience.
  * Email prominent, social links below, copyright at bottom.

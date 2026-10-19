@@ -34,24 +34,28 @@ export interface ProjectContent {
   video?: string;
   /** GitHub repository URL */
   github?: string;
+  /** Dedicated Grafana dashboard link */
+  grafanaLink?: string;
   /** Architecture documentation or diagram URL */
   architectureLink?: string;
+  /** If true, lightbox displays the static image screenshot instead of embedding the live URL in an iframe */
+  disableIframe?: boolean;
 }
 
 export const PROJECTS: ProjectContent[] = [
   {
     slug: 'microps',
     title: 'MicrOps',
-    category: 'DevOps & Cloud SaaS',
+    category: 'DevOps & Cloud Platform',
     year: '2026',
-    tagline: 'Autonomous No-Code Cloud DevOps & Serverless Container Orchestrator.',
+    tagline: 'Automated container deployment platform on AWS ECS Fargate.',
     description:
-      'A production-grade PaaS that eliminates manual cloud engineering. Paste any Git URL and MicrOps handles AI pre-flight scanning, resilient Docker builds via BullMQ workers, real-time SSE telemetry, and zero-downtime ECS Fargate provisioning. Features a 16-rule self-healing diagnostic engine with OpenAI fallback, BYOC zero-trust OIDC deployments, and automated idle scaling that cuts costs by 92%.',
+      'A deployment platform that automates container builds and deployments to AWS ECS Fargate from a Git repository. Connect a repository and the system runs asynchronous Docker builds using BullMQ workers, streams real-time deployment logs over Server-Sent Events, provisions ECS services, and assists with build failure diagnostics.',
     techStack: [
       'TypeScript',
-      'React 19',
+      'React',
       'Node.js',
-      'PostgreSQL (Neon)',
+      'PostgreSQL',
       'Redis & BullMQ',
       'AWS ECS Fargate',
       'Docker',
@@ -61,41 +65,42 @@ export const PROJECTS: ProjectContent[] = [
     link: 'https://microps.in/',
     github: 'https://github.com/codesbysaravana/microps',
   },
-
   {
-    slug: 'pasumaicholai',
-    title: 'PasumaiCholai',
-    category: 'AI-Powered Agricultural Platform',
+    slug: 'codepro',
+    title: 'CodePro',
+    category: 'Code Execution Engine',
     year: '2026',
-    tagline: 'AI voice assistance and digital services for farmers.',
+    tagline: "Production code-execution engine powering placement practice at St Joseph's, Chennai.",
     description:
-      'Pasumaicholai is an AI-powered agricultural platform designed to make farming information more accessible through natural language interactions. Farmers can ask questions using voice or text in their preferred language and receive contextual guidance on crops, cultivation practices, government schemes, weather conditions, and agricultural best practices. The platform combines modern AI models with structured agricultural knowledge to deliver reliable, easy-to-understand responses while reducing the digital barrier for rural communities. Built with a scalable backend architecture, Pasumaicholai focuses on improving accessibility, farmer awareness, and informed decision-making through conversational AI.',
-    techStack: [
-      'React',
-      'Node.js & Express',
-      'FastAPI',
-      'MongoDB',
-      'OpenAI',
-      'Twilio',
-      'Tailwind CSS'
-    ],
-    image: '/projects/pasumaicholai.png',
-    link: 'https://pasumaicholai.vercel.app/',
-    github: 'https://github.com/codesbysaravana/pasumaicholai',
+      "I built the code-execution engine behind CodePro, an online judge used for placement practice at St Joseph's, Chennai. It runs in production from my repo's main branch.",
+    techStack: ['Judge0', 'BullMQ', 'Redis', 'Node.js'],
+    image: '/projects/codepro.png',
+    disableIframe: true,
+    grafanaLink: 'https://grafana.stjosephsplacements.in/public-dashboards/b65e72b16769417c803e9001efa06da8',
+    github: 'https://github.com/codesbysaravana/codepro',
   },
   {
     slug: 'nephele',
-    title: 'Nephele AI',
-    category: 'AI Robotics & Orchestration',
+    title: 'Nephele',
+    category: 'Voice AI Assistant',
     year: '2026',
-    tagline: 'A futuristic multi-modal AI interviewer and robotic assistant.',
+    tagline: 'Real-time voice assistant you can interrupt mid-answer.',
     description:
-      'Nephele is a production-grade AI operating interface and robotic orchestrator. It features a real-time computer vision edge pipeline for behavioral telemetry, fused multi-modal data processing, and a low-latency Cognitive Engine. The frontend provides a stunning, framework-less Vanilla JS SPA with adaptive CSS animations and surgical WebSocket state management.',
-    techStack: ['Python', 'FastAPI', 'OpenCV', 'Vanilla JS', 'TailwindCSS', 'WebSockets', 'Groq LLM'],
+      'A real-time voice assistant used weekly by 30+ students. Streaming speech-to-text, GPT-4o-mini replies and streaming text-to-speech over WebSockets, with barge-in so you can interrupt it mid-answer. Fixed a TTS cancellation race where cancel checks never ran while the audio stream awaited the network (asyncio).',
+    techStack: [
+      'Python',
+      'FastAPI',
+      'WebSockets',
+      'AssemblyAI (STT)',
+      'GPT-4o-mini',
+      'Deepgram (TTS)',
+      'React',
+      'Vercel',
+      'Railway',
+    ],
     image: '/projects/nephele.png',
-    link: 'https://nephelelanding.vercel.app/',
+    link: 'https://nephele-production.vercel.app/',
     video: 'https://www.youtube.com/embed/rm_tdCiRECc?start=30',
     github: 'https://github.com/codesbysaravana/nephele_production',
-  }
-
+  },
 ];

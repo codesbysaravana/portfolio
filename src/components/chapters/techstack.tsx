@@ -32,50 +32,29 @@ interface Tech {
   type: 'large' | 'medium' | 'small';
   icon: any;
   color: string;
-  proficiency: number;
-  label: string;
+  tag: string;
   desc: string;
   span: string;
 }
 
 const TECH_STACK: Tech[] = [
   // Large Cards
-  { id: 'java', name: 'Java', type: 'large', icon: FaJava, color: '#F0931C', proficiency: 5, label: 'Expert', desc: 'Primary backend language for scalable APIs and system design.', span: 'col-span-4 md:col-span-2 row-span-2' },
-  { id: 'node', name: 'Node.js', type: 'large', icon: FaNodeJs, color: '#339933', proficiency: 5, label: 'Expert', desc: 'Event-driven runtime for fast, scalable network applications.', span: 'col-span-4 md:col-span-2 row-span-2' },
-  { id: 'aws', name: 'AWS', type: 'large', icon: FaAws, color: '#FF9900', proficiency: 4, label: 'Advanced', desc: 'Cloud infrastructure, deployment, networking, and DevOps.', span: 'col-span-4 md:col-span-2 row-span-2' },
+  { id: 'java', name: 'Java', type: 'large', icon: FaJava, color: '#F0931C', tag: 'Core Backend', desc: 'Primary backend language for scalable APIs and system design.', span: 'col-span-4 md:col-span-2 row-span-2' },
+  { id: 'node', name: 'Node.js', type: 'large', icon: FaNodeJs, color: '#339933', tag: 'Runtime & APIs', desc: 'Event-driven runtime for fast, scalable network applications.', span: 'col-span-4 md:col-span-2 row-span-2' },
+  { id: 'aws', name: 'AWS', type: 'large', icon: FaAws, color: '#FF9900', tag: 'Cloud Infrastructure', desc: 'Cloud infrastructure, deployment, networking, and DevOps.', span: 'col-span-4 md:col-span-2 row-span-2' },
   
   // Medium Cards
-  { id: 'docker', name: 'Docker', type: 'medium', icon: FaDocker, color: '#2496ED', proficiency: 4, label: 'Advanced', desc: 'Containerization for consistent environments and deployments.', span: 'col-span-4 md:col-span-2 row-span-1' },
-  { id: 'postgres', name: 'PostgreSQL', type: 'medium', icon: SiPostgresql, color: '#336791', proficiency: 4, label: 'Advanced', desc: 'Robust relational database for complex data architecture.', span: 'col-span-4 md:col-span-2 row-span-1' },
-  { id: 'mongodb', name: 'MongoDB', type: 'medium', icon: SiMongodb, color: '#47A248', proficiency: 3, label: 'Comfortable', desc: 'NoSQL database for flexible, scalable document storage.', span: 'col-span-4 md:col-span-2 row-span-1' },
+  { id: 'docker', name: 'Docker', type: 'medium', icon: FaDocker, color: '#2496ED', tag: 'Containers', desc: 'Containerization for consistent environments and deployments.', span: 'col-span-4 md:col-span-2 row-span-1' },
+  { id: 'postgres', name: 'PostgreSQL', type: 'medium', icon: SiPostgresql, color: '#336791', tag: 'Relational DB', desc: 'Robust relational database for complex data architecture.', span: 'col-span-4 md:col-span-2 row-span-1' },
+  { id: 'mongodb', name: 'MongoDB', type: 'medium', icon: SiMongodb, color: '#47A248', tag: 'Document DB', desc: 'NoSQL database for flexible, scalable document storage.', span: 'col-span-4 md:col-span-2 row-span-1' },
   
   // Small Cards
-  { id: 'express', name: 'Express.js', type: 'small', icon: SiExpress, color: '#ffffff', proficiency: 4, label: 'Advanced', desc: 'Minimalist web framework for Node.js.', span: 'col-span-2 md:col-span-1 row-span-1' },
-  { id: 'jenkins', name: 'Jenkins', type: 'small', icon: FaJenkins, color: '#D24939', proficiency: 3, label: 'Comfortable', desc: 'Automation server for continuous integration.', span: 'col-span-2 md:col-span-1 row-span-1' },
-  { id: 'linux', name: 'Linux', type: 'small', icon: FaLinux, color: '#FCC624', proficiency: 3, label: 'Comfortable', desc: 'System administration and server management.', span: 'col-span-2 md:col-span-1 row-span-1' },
-  { id: 'js', name: 'JavaScript', type: 'small', icon: SiJavascript, color: '#F7DF1E', proficiency: 3, label: 'Comfortable', desc: 'Frontend interactions and full-stack utilities.', span: 'col-span-2 md:col-span-1 row-span-1' },
-  { id: 'python', name: 'Python', type: 'small', icon: FaPython, color: '#3776AB', proficiency: 2, label: 'Familiar', desc: 'Scripting, automation, and AI integrations.', span: 'col-span-4 md:col-span-2 row-span-1' },
+  { id: 'express', name: 'Express.js', type: 'small', icon: SiExpress, color: '#ffffff', tag: 'Web Framework', desc: 'Minimalist web framework for Node.js.', span: 'col-span-2 md:col-span-1 row-span-1' },
+  { id: 'jenkins', name: 'Jenkins', type: 'small', icon: FaJenkins, color: '#D24939', tag: 'CI/CD Automation', desc: 'Automation server for continuous integration.', span: 'col-span-2 md:col-span-1 row-span-1' },
+  { id: 'linux', name: 'Linux', type: 'small', icon: FaLinux, color: '#FCC624', tag: 'Operating Systems', desc: 'System administration and server management.', span: 'col-span-2 md:col-span-1 row-span-1' },
+  { id: 'js', name: 'JavaScript', type: 'small', icon: SiJavascript, color: '#F7DF1E', tag: 'Full Stack', desc: 'Frontend interactions and full-stack utilities.', span: 'col-span-2 md:col-span-1 row-span-1' },
+  { id: 'python', name: 'Python', type: 'small', icon: FaPython, color: '#3776AB', tag: 'Automation & AI', desc: 'Scripting, automation, and AI integrations.', span: 'col-span-4 md:col-span-2 row-span-1' },
 ];
-
-function Proficiency({ rating, label, isSmall }: { rating: number, label: string, isSmall: boolean }) {
-  return (
-    <div className="flex items-center gap-3">
-      <div className="flex text-[0.7rem] md:text-xs tracking-widest">
-        {[1,2,3,4,5].map(i => (
-          <span key={i} className="transition-colors duration-300" style={{ 
-            color: i <= rating ? 'var(--portfolio-fg-primary)' : 'var(--portfolio-fg-tertiary)',
-            opacity: i <= rating ? 1 : 0.25
-          }}>
-            {i <= rating ? '★' : '☆'}
-          </span>
-        ))}
-      </div>
-      <span className={`text-[10px] md:text-xs font-medium uppercase tracking-widest text-[var(--portfolio-fg-tertiary)] ${isSmall ? 'opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-75' : ''}`}>
-        {label}
-      </span>
-    </div>
-  );
-}
 
 function BentoCard({ tech, index }: { tech: Tech, index: number }) {
   const isLarge = tech.type === 'large';
@@ -123,7 +102,13 @@ function BentoCard({ tech, index }: { tech: Tech, index: number }) {
         </div>
 
         <div className="mt-8">
-          <Proficiency rating={tech.proficiency} label={tech.label} isSmall={isSmall} />
+          <span
+            className={`inline-flex items-center rounded-full font-mono uppercase tracking-wider text-[var(--portfolio-fg-tertiary)] border border-[var(--portfolio-border)] bg-[oklch(1_0_0_/_4%)] ${
+              isSmall ? 'px-2.5 py-0.5 text-[10px]' : 'px-3 py-1 text-xs'
+            }`}
+          >
+            {tech.tag}
+          </span>
         </div>
       </div>
     </div>

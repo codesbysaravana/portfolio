@@ -22,7 +22,7 @@ import { useReducedMotion } from '@/hooks/use-reduced-motion';
 const NAV_LINKS = [
   { label: 'Work', href: '#projects' },
   { label: 'About', href: '#identity' },
-  { label: 'Philosophy', href: '#philosophy' },
+  { label: 'Principles', href: '#principles' },
   { label: 'Contact', href: '#contact' },
 ] as const;
 

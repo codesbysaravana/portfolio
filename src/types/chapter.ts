@@ -9,14 +9,15 @@ export interface ChapterMeta {
 export const CHAPTERS: ChapterMeta[] = [
   { id: 'hero',        number: 1,  label: 'Hero',                     bg: 'deep' },
   { id: 'identity',    number: 2,  label: 'Identity',                 bg: 'primary' },
-  { id: 'journey',     number: 3,  label: 'Journey',                  bg: 'elevated' },
-  { id: 'experience',  number: 4,  label: 'Experience',               bg: 'primary' },
+  { id: 'value',       number: 3,  label: 'Value',                    bg: 'deep' },
+  { id: 'evolution',   number: 4,  label: 'The Evolution',            bg: 'elevated' },
   { id: 'techstack',   number: 5,  label: 'Tech Stack',               bg: 'elevated' },
-  { id: 'philosophy',  number: 6,  label: 'Engineering Philosophy',   bg: 'primary' },
-  { id: 'projects',    number: 7,  label: 'Projects',                 bg: 'deep' },
-  { id: 'principles',  number: 8,  label: 'Principles',               bg: 'primary' },
-  { id: 'future',      number: 9,  label: 'Future',                   bg: 'deep' },
-  { id: 'contact',     number: 10, label: 'Contact',                  bg: 'deep' },
+  { id: 'projects',    number: 6,  label: 'Selected Work',            bg: 'deep' },
+  { id: 'open-source', number: 7,  label: 'Open Source',              bg: 'primary' },
+  { id: 'writing',     number: 8,  label: 'Writing',                  bg: 'elevated' },
+  { id: 'principles',  number: 9,  label: 'Principles',               bg: 'primary' },
+  { id: 'future',      number: 10, label: 'Future',                   bg: 'deep' },
+  { id: 'contact',     number: 11, label: 'Contact',                  bg: 'deep' },
 ];
 
 export const BG_MAP = {

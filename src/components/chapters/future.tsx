@@ -7,7 +7,7 @@ import { AnimateOnScroll } from '@/components/motion/animate-on-scroll';
 import { TextReveal } from '@/components/motion/text-reveal';
 
 /**
- * Chapter 7 — Future
+ * Chapter 10 — Future
  *
  * Full-screen cinematic. Maximum restraint.
  * A single forward-looking statement with accent glow.
@@ -29,7 +29,7 @@ export function ChapterFuture() {
         }}
       >
         <Container width="narrow" className="text-center">
-          <ChapterOverline number={7} />
+          <ChapterOverline number={10} />
 
           <TextReveal
             as="h2"

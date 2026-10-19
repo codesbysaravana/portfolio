@@ -8,6 +8,8 @@ const AiWorkflowStrip = dynamic(() => import('@/components/chapters/ai-workflow'
 const ChapterEvolution = dynamic(() => import('@/components/chapters/evolution').then(mod => mod.ChapterEvolution));
 const ChapterTechStack = dynamic(() => import('@/components/chapters/techstack').then(mod => mod.ChapterTechStack));
 const ChapterProjects = dynamic(() => import('@/components/chapters/projects').then(mod => mod.ChapterProjects));
+const ChapterOpenSource = dynamic(() => import('@/components/chapters/open-source').then(mod => mod.ChapterOpenSource));
+const ChapterWriting = dynamic(() => import('@/components/chapters/writing').then(mod => mod.ChapterWriting));
 const ChapterPrinciples = dynamic(() => import('@/components/chapters/principles').then(mod => mod.ChapterPrinciples));
 const ChapterFuture = dynamic(() => import('@/components/chapters/future').then(mod => mod.ChapterFuture));
 const ChapterContact = dynamic(() => import('@/components/chapters/contact').then(mod => mod.ChapterContact));
@@ -17,7 +19,7 @@ const ChapterTransitionLast = dynamic(() => import('@/components/layout/chapter-
  * Home Page
  *
  * The entire portfolio is a single vertical scroll journey.
- * 10 chapters separated by breathing-room transitions.
+ * 11 chapters separated by breathing-room transitions.
  */
 export default function Home() {
   return (
@@ -34,6 +36,10 @@ export default function Home() {
       <ChapterTechStack />
       <ChapterTransition />
       <ChapterProjects />
+      <ChapterTransition />
+      <ChapterOpenSource />
+      <ChapterTransition />
+      <ChapterWriting />
       <ChapterTransition />
       <ChapterPrinciples />
       <ChapterTransition />
